@@ -25,91 +25,91 @@
 #include <grpcpp/support/stub_options.h>
 #include <grpcpp/support/sync_stream.h>
 
-namespace store {
+namespace dlsm {
 
 class dLSMService final {
  public:
   static constexpr char const* service_full_name() {
-    return "store.dLSMService";
+    return "dlsm.dLSMService";
   }
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status SetKey(::grpc::ClientContext* context, const ::store::GetKeyRequest& request, ::store::SetKeyResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::store::SetKeyResponse>> AsyncSetKey(::grpc::ClientContext* context, const ::store::GetKeyRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::store::SetKeyResponse>>(AsyncSetKeyRaw(context, request, cq));
+    virtual ::grpc::Status SetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::dlsm::SetKeyResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::SetKeyResponse>> AsyncSetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::SetKeyResponse>>(AsyncSetKeyRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::store::SetKeyResponse>> PrepareAsyncSetKey(::grpc::ClientContext* context, const ::store::GetKeyRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::store::SetKeyResponse>>(PrepareAsyncSetKeyRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::SetKeyResponse>> PrepareAsyncSetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::SetKeyResponse>>(PrepareAsyncSetKeyRaw(context, request, cq));
     }
-    virtual ::grpc::Status GetKey(::grpc::ClientContext* context, const ::store::GetKeyRequest& request, ::store::GetKeyResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::store::GetKeyResponse>> AsyncGetKey(::grpc::ClientContext* context, const ::store::GetKeyRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::store::GetKeyResponse>>(AsyncGetKeyRaw(context, request, cq));
+    virtual ::grpc::Status GetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::dlsm::GetKeyResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::GetKeyResponse>> AsyncGetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::GetKeyResponse>>(AsyncGetKeyRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::store::GetKeyResponse>> PrepareAsyncGetKey(::grpc::ClientContext* context, const ::store::GetKeyRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::store::GetKeyResponse>>(PrepareAsyncGetKeyRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::GetKeyResponse>> PrepareAsyncGetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::GetKeyResponse>>(PrepareAsyncGetKeyRaw(context, request, cq));
     }
-    virtual ::grpc::Status DeleteKey(::grpc::ClientContext* context, const ::store::DeleteKeyRequest& request, ::store::DeleteKeyResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::store::DeleteKeyResponse>> AsyncDeleteKey(::grpc::ClientContext* context, const ::store::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::store::DeleteKeyResponse>>(AsyncDeleteKeyRaw(context, request, cq));
+    virtual ::grpc::Status DeleteKey(::grpc::ClientContext* context, const ::dlsm::DeleteKeyRequest& request, ::dlsm::DeleteKeyResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::DeleteKeyResponse>> AsyncDeleteKey(::grpc::ClientContext* context, const ::dlsm::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::DeleteKeyResponse>>(AsyncDeleteKeyRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::store::DeleteKeyResponse>> PrepareAsyncDeleteKey(::grpc::ClientContext* context, const ::store::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::store::DeleteKeyResponse>>(PrepareAsyncDeleteKeyRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::DeleteKeyResponse>> PrepareAsyncDeleteKey(::grpc::ClientContext* context, const ::dlsm::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::DeleteKeyResponse>>(PrepareAsyncDeleteKeyRaw(context, request, cq));
     }
     class async_interface {
      public:
       virtual ~async_interface() {}
-      virtual void SetKey(::grpc::ClientContext* context, const ::store::GetKeyRequest* request, ::store::SetKeyResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void SetKey(::grpc::ClientContext* context, const ::store::GetKeyRequest* request, ::store::SetKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void GetKey(::grpc::ClientContext* context, const ::store::GetKeyRequest* request, ::store::GetKeyResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetKey(::grpc::ClientContext* context, const ::store::GetKeyRequest* request, ::store::GetKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void DeleteKey(::grpc::ClientContext* context, const ::store::DeleteKeyRequest* request, ::store::DeleteKeyResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void DeleteKey(::grpc::ClientContext* context, const ::store::DeleteKeyRequest* request, ::store::DeleteKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void SetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest* request, ::dlsm::SetKeyResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest* request, ::dlsm::SetKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest* request, ::dlsm::GetKeyResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest* request, ::dlsm::GetKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void DeleteKey(::grpc::ClientContext* context, const ::dlsm::DeleteKeyRequest* request, ::dlsm::DeleteKeyResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void DeleteKey(::grpc::ClientContext* context, const ::dlsm::DeleteKeyRequest* request, ::dlsm::DeleteKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::store::SetKeyResponse>* AsyncSetKeyRaw(::grpc::ClientContext* context, const ::store::GetKeyRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::store::SetKeyResponse>* PrepareAsyncSetKeyRaw(::grpc::ClientContext* context, const ::store::GetKeyRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::store::GetKeyResponse>* AsyncGetKeyRaw(::grpc::ClientContext* context, const ::store::GetKeyRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::store::GetKeyResponse>* PrepareAsyncGetKeyRaw(::grpc::ClientContext* context, const ::store::GetKeyRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::store::DeleteKeyResponse>* AsyncDeleteKeyRaw(::grpc::ClientContext* context, const ::store::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::store::DeleteKeyResponse>* PrepareAsyncDeleteKeyRaw(::grpc::ClientContext* context, const ::store::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::SetKeyResponse>* AsyncSetKeyRaw(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::SetKeyResponse>* PrepareAsyncSetKeyRaw(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::GetKeyResponse>* AsyncGetKeyRaw(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::GetKeyResponse>* PrepareAsyncGetKeyRaw(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::DeleteKeyResponse>* AsyncDeleteKeyRaw(::grpc::ClientContext* context, const ::dlsm::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::DeleteKeyResponse>* PrepareAsyncDeleteKeyRaw(::grpc::ClientContext* context, const ::dlsm::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status SetKey(::grpc::ClientContext* context, const ::store::GetKeyRequest& request, ::store::SetKeyResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::store::SetKeyResponse>> AsyncSetKey(::grpc::ClientContext* context, const ::store::GetKeyRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::store::SetKeyResponse>>(AsyncSetKeyRaw(context, request, cq));
+    ::grpc::Status SetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::dlsm::SetKeyResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dlsm::SetKeyResponse>> AsyncSetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dlsm::SetKeyResponse>>(AsyncSetKeyRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::store::SetKeyResponse>> PrepareAsyncSetKey(::grpc::ClientContext* context, const ::store::GetKeyRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::store::SetKeyResponse>>(PrepareAsyncSetKeyRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dlsm::SetKeyResponse>> PrepareAsyncSetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dlsm::SetKeyResponse>>(PrepareAsyncSetKeyRaw(context, request, cq));
     }
-    ::grpc::Status GetKey(::grpc::ClientContext* context, const ::store::GetKeyRequest& request, ::store::GetKeyResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::store::GetKeyResponse>> AsyncGetKey(::grpc::ClientContext* context, const ::store::GetKeyRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::store::GetKeyResponse>>(AsyncGetKeyRaw(context, request, cq));
+    ::grpc::Status GetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::dlsm::GetKeyResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dlsm::GetKeyResponse>> AsyncGetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dlsm::GetKeyResponse>>(AsyncGetKeyRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::store::GetKeyResponse>> PrepareAsyncGetKey(::grpc::ClientContext* context, const ::store::GetKeyRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::store::GetKeyResponse>>(PrepareAsyncGetKeyRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dlsm::GetKeyResponse>> PrepareAsyncGetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dlsm::GetKeyResponse>>(PrepareAsyncGetKeyRaw(context, request, cq));
     }
-    ::grpc::Status DeleteKey(::grpc::ClientContext* context, const ::store::DeleteKeyRequest& request, ::store::DeleteKeyResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::store::DeleteKeyResponse>> AsyncDeleteKey(::grpc::ClientContext* context, const ::store::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::store::DeleteKeyResponse>>(AsyncDeleteKeyRaw(context, request, cq));
+    ::grpc::Status DeleteKey(::grpc::ClientContext* context, const ::dlsm::DeleteKeyRequest& request, ::dlsm::DeleteKeyResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dlsm::DeleteKeyResponse>> AsyncDeleteKey(::grpc::ClientContext* context, const ::dlsm::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dlsm::DeleteKeyResponse>>(AsyncDeleteKeyRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::store::DeleteKeyResponse>> PrepareAsyncDeleteKey(::grpc::ClientContext* context, const ::store::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::store::DeleteKeyResponse>>(PrepareAsyncDeleteKeyRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dlsm::DeleteKeyResponse>> PrepareAsyncDeleteKey(::grpc::ClientContext* context, const ::dlsm::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dlsm::DeleteKeyResponse>>(PrepareAsyncDeleteKeyRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
      public:
-      void SetKey(::grpc::ClientContext* context, const ::store::GetKeyRequest* request, ::store::SetKeyResponse* response, std::function<void(::grpc::Status)>) override;
-      void SetKey(::grpc::ClientContext* context, const ::store::GetKeyRequest* request, ::store::SetKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void GetKey(::grpc::ClientContext* context, const ::store::GetKeyRequest* request, ::store::GetKeyResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetKey(::grpc::ClientContext* context, const ::store::GetKeyRequest* request, ::store::GetKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void DeleteKey(::grpc::ClientContext* context, const ::store::DeleteKeyRequest* request, ::store::DeleteKeyResponse* response, std::function<void(::grpc::Status)>) override;
-      void DeleteKey(::grpc::ClientContext* context, const ::store::DeleteKeyRequest* request, ::store::DeleteKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest* request, ::dlsm::SetKeyResponse* response, std::function<void(::grpc::Status)>) override;
+      void SetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest* request, ::dlsm::SetKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest* request, ::dlsm::GetKeyResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest* request, ::dlsm::GetKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void DeleteKey(::grpc::ClientContext* context, const ::dlsm::DeleteKeyRequest* request, ::dlsm::DeleteKeyResponse* response, std::function<void(::grpc::Status)>) override;
+      void DeleteKey(::grpc::ClientContext* context, const ::dlsm::DeleteKeyRequest* request, ::dlsm::DeleteKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -121,12 +121,12 @@ class dLSMService final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::store::SetKeyResponse>* AsyncSetKeyRaw(::grpc::ClientContext* context, const ::store::GetKeyRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::store::SetKeyResponse>* PrepareAsyncSetKeyRaw(::grpc::ClientContext* context, const ::store::GetKeyRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::store::GetKeyResponse>* AsyncGetKeyRaw(::grpc::ClientContext* context, const ::store::GetKeyRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::store::GetKeyResponse>* PrepareAsyncGetKeyRaw(::grpc::ClientContext* context, const ::store::GetKeyRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::store::DeleteKeyResponse>* AsyncDeleteKeyRaw(::grpc::ClientContext* context, const ::store::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::store::DeleteKeyResponse>* PrepareAsyncDeleteKeyRaw(::grpc::ClientContext* context, const ::store::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::dlsm::SetKeyResponse>* AsyncSetKeyRaw(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::dlsm::SetKeyResponse>* PrepareAsyncSetKeyRaw(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::dlsm::GetKeyResponse>* AsyncGetKeyRaw(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::dlsm::GetKeyResponse>* PrepareAsyncGetKeyRaw(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::dlsm::DeleteKeyResponse>* AsyncDeleteKeyRaw(::grpc::ClientContext* context, const ::dlsm::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::dlsm::DeleteKeyResponse>* PrepareAsyncDeleteKeyRaw(::grpc::ClientContext* context, const ::dlsm::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_SetKey_;
     const ::grpc::internal::RpcMethod rpcmethod_GetKey_;
     const ::grpc::internal::RpcMethod rpcmethod_DeleteKey_;
@@ -137,9 +137,9 @@ class dLSMService final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status SetKey(::grpc::ServerContext* context, const ::store::GetKeyRequest* request, ::store::SetKeyResponse* response);
-    virtual ::grpc::Status GetKey(::grpc::ServerContext* context, const ::store::GetKeyRequest* request, ::store::GetKeyResponse* response);
-    virtual ::grpc::Status DeleteKey(::grpc::ServerContext* context, const ::store::DeleteKeyRequest* request, ::store::DeleteKeyResponse* response);
+    virtual ::grpc::Status SetKey(::grpc::ServerContext* context, const ::dlsm::GetKeyRequest* request, ::dlsm::SetKeyResponse* response);
+    virtual ::grpc::Status GetKey(::grpc::ServerContext* context, const ::dlsm::GetKeyRequest* request, ::dlsm::GetKeyResponse* response);
+    virtual ::grpc::Status DeleteKey(::grpc::ServerContext* context, const ::dlsm::DeleteKeyRequest* request, ::dlsm::DeleteKeyResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_SetKey : public BaseClass {
@@ -153,11 +153,11 @@ class dLSMService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SetKey(::grpc::ServerContext* /*context*/, const ::store::GetKeyRequest* /*request*/, ::store::SetKeyResponse* /*response*/) override {
+    ::grpc::Status SetKey(::grpc::ServerContext* /*context*/, const ::dlsm::GetKeyRequest* /*request*/, ::dlsm::SetKeyResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestSetKey(::grpc::ServerContext* context, ::store::GetKeyRequest* request, ::grpc::ServerAsyncResponseWriter< ::store::SetKeyResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestSetKey(::grpc::ServerContext* context, ::dlsm::GetKeyRequest* request, ::grpc::ServerAsyncResponseWriter< ::dlsm::SetKeyResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -173,11 +173,11 @@ class dLSMService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetKey(::grpc::ServerContext* /*context*/, const ::store::GetKeyRequest* /*request*/, ::store::GetKeyResponse* /*response*/) override {
+    ::grpc::Status GetKey(::grpc::ServerContext* /*context*/, const ::dlsm::GetKeyRequest* /*request*/, ::dlsm::GetKeyResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetKey(::grpc::ServerContext* context, ::store::GetKeyRequest* request, ::grpc::ServerAsyncResponseWriter< ::store::GetKeyResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestGetKey(::grpc::ServerContext* context, ::dlsm::GetKeyRequest* request, ::grpc::ServerAsyncResponseWriter< ::dlsm::GetKeyResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -193,11 +193,11 @@ class dLSMService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status DeleteKey(::grpc::ServerContext* /*context*/, const ::store::DeleteKeyRequest* /*request*/, ::store::DeleteKeyResponse* /*response*/) override {
+    ::grpc::Status DeleteKey(::grpc::ServerContext* /*context*/, const ::dlsm::DeleteKeyRequest* /*request*/, ::dlsm::DeleteKeyResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestDeleteKey(::grpc::ServerContext* context, ::store::DeleteKeyRequest* request, ::grpc::ServerAsyncResponseWriter< ::store::DeleteKeyResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestDeleteKey(::grpc::ServerContext* context, ::dlsm::DeleteKeyRequest* request, ::grpc::ServerAsyncResponseWriter< ::dlsm::DeleteKeyResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -209,25 +209,25 @@ class dLSMService final {
    public:
     WithCallbackMethod_SetKey() {
       ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::store::GetKeyRequest, ::store::SetKeyResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::dlsm::GetKeyRequest, ::dlsm::SetKeyResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::store::GetKeyRequest* request, ::store::SetKeyResponse* response) { return this->SetKey(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::dlsm::GetKeyRequest* request, ::dlsm::SetKeyResponse* response) { return this->SetKey(context, request, response); }));}
     void SetMessageAllocatorFor_SetKey(
-        ::grpc::MessageAllocator< ::store::GetKeyRequest, ::store::SetKeyResponse>* allocator) {
+        ::grpc::MessageAllocator< ::dlsm::GetKeyRequest, ::dlsm::SetKeyResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::store::GetKeyRequest, ::store::SetKeyResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::dlsm::GetKeyRequest, ::dlsm::SetKeyResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_SetKey() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SetKey(::grpc::ServerContext* /*context*/, const ::store::GetKeyRequest* /*request*/, ::store::SetKeyResponse* /*response*/) override {
+    ::grpc::Status SetKey(::grpc::ServerContext* /*context*/, const ::dlsm::GetKeyRequest* /*request*/, ::dlsm::SetKeyResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* SetKey(
-      ::grpc::CallbackServerContext* /*context*/, const ::store::GetKeyRequest* /*request*/, ::store::SetKeyResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::dlsm::GetKeyRequest* /*request*/, ::dlsm::SetKeyResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_GetKey : public BaseClass {
@@ -236,25 +236,25 @@ class dLSMService final {
    public:
     WithCallbackMethod_GetKey() {
       ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::store::GetKeyRequest, ::store::GetKeyResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::dlsm::GetKeyRequest, ::dlsm::GetKeyResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::store::GetKeyRequest* request, ::store::GetKeyResponse* response) { return this->GetKey(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::dlsm::GetKeyRequest* request, ::dlsm::GetKeyResponse* response) { return this->GetKey(context, request, response); }));}
     void SetMessageAllocatorFor_GetKey(
-        ::grpc::MessageAllocator< ::store::GetKeyRequest, ::store::GetKeyResponse>* allocator) {
+        ::grpc::MessageAllocator< ::dlsm::GetKeyRequest, ::dlsm::GetKeyResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::store::GetKeyRequest, ::store::GetKeyResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::dlsm::GetKeyRequest, ::dlsm::GetKeyResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_GetKey() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetKey(::grpc::ServerContext* /*context*/, const ::store::GetKeyRequest* /*request*/, ::store::GetKeyResponse* /*response*/) override {
+    ::grpc::Status GetKey(::grpc::ServerContext* /*context*/, const ::dlsm::GetKeyRequest* /*request*/, ::dlsm::GetKeyResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* GetKey(
-      ::grpc::CallbackServerContext* /*context*/, const ::store::GetKeyRequest* /*request*/, ::store::GetKeyResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::dlsm::GetKeyRequest* /*request*/, ::dlsm::GetKeyResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_DeleteKey : public BaseClass {
@@ -263,25 +263,25 @@ class dLSMService final {
    public:
     WithCallbackMethod_DeleteKey() {
       ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::store::DeleteKeyRequest, ::store::DeleteKeyResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::dlsm::DeleteKeyRequest, ::dlsm::DeleteKeyResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::store::DeleteKeyRequest* request, ::store::DeleteKeyResponse* response) { return this->DeleteKey(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::dlsm::DeleteKeyRequest* request, ::dlsm::DeleteKeyResponse* response) { return this->DeleteKey(context, request, response); }));}
     void SetMessageAllocatorFor_DeleteKey(
-        ::grpc::MessageAllocator< ::store::DeleteKeyRequest, ::store::DeleteKeyResponse>* allocator) {
+        ::grpc::MessageAllocator< ::dlsm::DeleteKeyRequest, ::dlsm::DeleteKeyResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::store::DeleteKeyRequest, ::store::DeleteKeyResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::dlsm::DeleteKeyRequest, ::dlsm::DeleteKeyResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_DeleteKey() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status DeleteKey(::grpc::ServerContext* /*context*/, const ::store::DeleteKeyRequest* /*request*/, ::store::DeleteKeyResponse* /*response*/) override {
+    ::grpc::Status DeleteKey(::grpc::ServerContext* /*context*/, const ::dlsm::DeleteKeyRequest* /*request*/, ::dlsm::DeleteKeyResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* DeleteKey(
-      ::grpc::CallbackServerContext* /*context*/, const ::store::DeleteKeyRequest* /*request*/, ::store::DeleteKeyResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::dlsm::DeleteKeyRequest* /*request*/, ::dlsm::DeleteKeyResponse* /*response*/)  { return nullptr; }
   };
   typedef WithCallbackMethod_SetKey<WithCallbackMethod_GetKey<WithCallbackMethod_DeleteKey<Service > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
@@ -297,7 +297,7 @@ class dLSMService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SetKey(::grpc::ServerContext* /*context*/, const ::store::GetKeyRequest* /*request*/, ::store::SetKeyResponse* /*response*/) override {
+    ::grpc::Status SetKey(::grpc::ServerContext* /*context*/, const ::dlsm::GetKeyRequest* /*request*/, ::dlsm::SetKeyResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -314,7 +314,7 @@ class dLSMService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetKey(::grpc::ServerContext* /*context*/, const ::store::GetKeyRequest* /*request*/, ::store::GetKeyResponse* /*response*/) override {
+    ::grpc::Status GetKey(::grpc::ServerContext* /*context*/, const ::dlsm::GetKeyRequest* /*request*/, ::dlsm::GetKeyResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -331,7 +331,7 @@ class dLSMService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status DeleteKey(::grpc::ServerContext* /*context*/, const ::store::DeleteKeyRequest* /*request*/, ::store::DeleteKeyResponse* /*response*/) override {
+    ::grpc::Status DeleteKey(::grpc::ServerContext* /*context*/, const ::dlsm::DeleteKeyRequest* /*request*/, ::dlsm::DeleteKeyResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -348,7 +348,7 @@ class dLSMService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SetKey(::grpc::ServerContext* /*context*/, const ::store::GetKeyRequest* /*request*/, ::store::SetKeyResponse* /*response*/) override {
+    ::grpc::Status SetKey(::grpc::ServerContext* /*context*/, const ::dlsm::GetKeyRequest* /*request*/, ::dlsm::SetKeyResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -368,7 +368,7 @@ class dLSMService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetKey(::grpc::ServerContext* /*context*/, const ::store::GetKeyRequest* /*request*/, ::store::GetKeyResponse* /*response*/) override {
+    ::grpc::Status GetKey(::grpc::ServerContext* /*context*/, const ::dlsm::GetKeyRequest* /*request*/, ::dlsm::GetKeyResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -388,7 +388,7 @@ class dLSMService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status DeleteKey(::grpc::ServerContext* /*context*/, const ::store::DeleteKeyRequest* /*request*/, ::store::DeleteKeyResponse* /*response*/) override {
+    ::grpc::Status DeleteKey(::grpc::ServerContext* /*context*/, const ::dlsm::DeleteKeyRequest* /*request*/, ::dlsm::DeleteKeyResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -411,7 +411,7 @@ class dLSMService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SetKey(::grpc::ServerContext* /*context*/, const ::store::GetKeyRequest* /*request*/, ::store::SetKeyResponse* /*response*/) override {
+    ::grpc::Status SetKey(::grpc::ServerContext* /*context*/, const ::dlsm::GetKeyRequest* /*request*/, ::dlsm::SetKeyResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -433,7 +433,7 @@ class dLSMService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetKey(::grpc::ServerContext* /*context*/, const ::store::GetKeyRequest* /*request*/, ::store::GetKeyResponse* /*response*/) override {
+    ::grpc::Status GetKey(::grpc::ServerContext* /*context*/, const ::dlsm::GetKeyRequest* /*request*/, ::dlsm::GetKeyResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -455,7 +455,7 @@ class dLSMService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status DeleteKey(::grpc::ServerContext* /*context*/, const ::store::DeleteKeyRequest* /*request*/, ::store::DeleteKeyResponse* /*response*/) override {
+    ::grpc::Status DeleteKey(::grpc::ServerContext* /*context*/, const ::dlsm::DeleteKeyRequest* /*request*/, ::dlsm::DeleteKeyResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -470,10 +470,10 @@ class dLSMService final {
     WithStreamedUnaryMethod_SetKey() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::store::GetKeyRequest, ::store::SetKeyResponse>(
+          ::dlsm::GetKeyRequest, ::dlsm::SetKeyResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::store::GetKeyRequest, ::store::SetKeyResponse>* streamer) {
+                     ::dlsm::GetKeyRequest, ::dlsm::SetKeyResponse>* streamer) {
                        return this->StreamedSetKey(context,
                          streamer);
                   }));
@@ -482,12 +482,12 @@ class dLSMService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status SetKey(::grpc::ServerContext* /*context*/, const ::store::GetKeyRequest* /*request*/, ::store::SetKeyResponse* /*response*/) override {
+    ::grpc::Status SetKey(::grpc::ServerContext* /*context*/, const ::dlsm::GetKeyRequest* /*request*/, ::dlsm::SetKeyResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedSetKey(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::store::GetKeyRequest,::store::SetKeyResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedSetKey(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::dlsm::GetKeyRequest,::dlsm::SetKeyResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_GetKey : public BaseClass {
@@ -497,10 +497,10 @@ class dLSMService final {
     WithStreamedUnaryMethod_GetKey() {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::store::GetKeyRequest, ::store::GetKeyResponse>(
+          ::dlsm::GetKeyRequest, ::dlsm::GetKeyResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::store::GetKeyRequest, ::store::GetKeyResponse>* streamer) {
+                     ::dlsm::GetKeyRequest, ::dlsm::GetKeyResponse>* streamer) {
                        return this->StreamedGetKey(context,
                          streamer);
                   }));
@@ -509,12 +509,12 @@ class dLSMService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status GetKey(::grpc::ServerContext* /*context*/, const ::store::GetKeyRequest* /*request*/, ::store::GetKeyResponse* /*response*/) override {
+    ::grpc::Status GetKey(::grpc::ServerContext* /*context*/, const ::dlsm::GetKeyRequest* /*request*/, ::dlsm::GetKeyResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetKey(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::store::GetKeyRequest,::store::GetKeyResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedGetKey(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::dlsm::GetKeyRequest,::dlsm::GetKeyResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_DeleteKey : public BaseClass {
@@ -524,10 +524,10 @@ class dLSMService final {
     WithStreamedUnaryMethod_DeleteKey() {
       ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::store::DeleteKeyRequest, ::store::DeleteKeyResponse>(
+          ::dlsm::DeleteKeyRequest, ::dlsm::DeleteKeyResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::store::DeleteKeyRequest, ::store::DeleteKeyResponse>* streamer) {
+                     ::dlsm::DeleteKeyRequest, ::dlsm::DeleteKeyResponse>* streamer) {
                        return this->StreamedDeleteKey(context,
                          streamer);
                   }));
@@ -536,19 +536,19 @@ class dLSMService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status DeleteKey(::grpc::ServerContext* /*context*/, const ::store::DeleteKeyRequest* /*request*/, ::store::DeleteKeyResponse* /*response*/) override {
+    ::grpc::Status DeleteKey(::grpc::ServerContext* /*context*/, const ::dlsm::DeleteKeyRequest* /*request*/, ::dlsm::DeleteKeyResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedDeleteKey(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::store::DeleteKeyRequest,::store::DeleteKeyResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedDeleteKey(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::dlsm::DeleteKeyRequest,::dlsm::DeleteKeyResponse>* server_unary_streamer) = 0;
   };
   typedef WithStreamedUnaryMethod_SetKey<WithStreamedUnaryMethod_GetKey<WithStreamedUnaryMethod_DeleteKey<Service > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
   typedef WithStreamedUnaryMethod_SetKey<WithStreamedUnaryMethod_GetKey<WithStreamedUnaryMethod_DeleteKey<Service > > > StreamedService;
 };
 
-}  // namespace store
+}  // namespace dlsm
 
 
 #endif  // GRPC_dlsm_2eproto__INCLUDED
