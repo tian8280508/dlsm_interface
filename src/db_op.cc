@@ -1,10 +1,12 @@
 #include "db_op.h"
 #include <cstdio>
+#include <mutex>
 #include <stdexcept>
 
 namespace dlsmdb {
 
 db *instance = nullptr;
+std::mutex db::mtx;
 
 db::db() {
   TimberSaw::Options options;

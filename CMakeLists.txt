@@ -1,38 +1,76 @@
-cmake_minimum_required(VERSION 3.0)
-# Keep the version below in sync with the one in db.h
-project(dlsm_interface VERSION 1.22.0 LANGUAGES C CXX)
+# Copyright 2018 gRPC authors.
+# Assumes protobuf and gRPC have been installed using cmake.
+# See cmake_externalproject/CMakeLists.txt for all-in-one cmake build
+# that automatically builds all the dependencies before building helloworld.
 
-include_directories(${CMAKE_SOURCE_DIR}/include)
-include_directories(${CMAKE_SOURCE_DIR}/pb)
+cmake_minimum_required(VERSION 3.8)
+
+project(HelloWorld C CXX)
+
+include(./common.cmake)
 
 set(DLSM_DIR "/home/tjz/vscode_workspace/dLSM")
 include_directories(${DLSM_DIR})
 include_directories(${DLSM_DIR}/include)
 
-set(GRPC_INSTALL_DIR "/home/tjz/my_grpc")
-include_directories(${GRPC_INSTALL_DIR}/include)
-link_directories(${GRPC_INSTALL_DIR}/lib)
+# Proto file
+get_filename_component(dlsm_proto "../pb/store/dlsm.proto" ABSOLUTE)
+get_filename_component(dlsm_proto_path "${dlsm_proto}" PATH)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_C_STANDARD_REQUIRED OFF)
-set(CMAKE_C_EXTENSIONS OFF)
+# Generated sources
+set(dlsm_proto_srcs "${CMAKE_CURRENT_BINARY_DIR}/dlsm.pb.cc")
+set(dlsm_proto_hdrs "${CMAKE_CURRENT_BINARY_DIR}/dlsm.pb.h")
+set(dlsm_grpc_srcs "${CMAKE_CURRENT_BINARY_DIR}/dlsm.grpc.pb.cc")
+set(dlsm_grpc_hdrs "${CMAKE_CURRENT_BINARY_DIR}/dlsm.grpc.pb.h")
+add_custom_command(
+      OUTPUT "${dlsm_proto_srcs}" "${dlsm_proto_hdrs}" "${dlsm_grpc_srcs}" "${dlsm_grpc_hdrs}"
+      COMMAND ${_PROTOBUF_PROTOC}
+      ARGS --grpc_out "${CMAKE_CURRENT_BINARY_DIR}"
+        --cpp_out "${CMAKE_CURRENT_BINARY_DIR}"
+        -I "${dlsm_proto_path}"
+        --plugin=protoc-gen-grpc="${_GRPC_CPP_PLUGIN_EXECUTABLE}"
+        "${dlsm_proto}"
+      DEPENDS "${dlsm_proto}")
 
-# 找到Protobuf
-# find_package(Protobuf REQUIRED)
-# include_directories(${Protobuf_INCLUDE_DIRS})
-# find_package(gRPC CONFIG REQUIRED)
-# include_directories(${gRPC_INCLUDE_DIRS})
-
-file(GLOB PROTO_SRCS ${CMAKE_SOURCE_DIR}/pb/*.pb.cc)
-file(GLOB GRPC_SRCS ${CMAKE_SOURCE_DIR}/pb/*.grpc.pb.cc)
-file(GLOB SRC_FILES ${CMAKE_SOURCE_DIR}/src/*.cc)
-
-add_executable(dlsm_interface ${SRC_FILES} ${PROTO_SRCS} ${GRPC_SRCS})
+# Include generated *.pb.h files
+include_directories("${CMAKE_CURRENT_BINARY_DIR}")
+include_directories("${CMAKE_SOURCE_DIR}/include")
+message(${CMAKE_CURRENT_BINARY_DIR})
+message(${CMAKE_SOURCE_DIR})
+# 创建一个库
+add_library(dlsm_grpc_proto
+  ${dlsm_proto_srcs}
+  ${dlsm_proto_hdrs}
+  ${dlsm_grpc_srcs}
+  ${dlsm_grpc_hdrs})
+target_link_libraries(dlsm_grpc_proto
+  absl::check
+  ${_REFLECTION}
+  ${_GRPC_GRPCPP}
+  ${_PROTOBUF_LIBPROTOBUF})
 
 find_library(NUMA_LIBRARY numa)
 find_library(SNAPPY_LIBRARY snappy)
 find_library(IBVERBS_LIBRARY ibverbs)
 
+file(GLOB SRC_FILES ${CMAKE_SOURCE_DIR}/src/*.cc)
+add_executable(dlsm_interface ${SRC_FILES})
 target_link_libraries(dlsm_interface ${DLSM_DIR}/build/libTimberSaw.a)
 target_link_libraries(dlsm_interface ${IBVERBS_LIBRARY} ${NUMA_LIBRARY} ${SNAPPY_LIBRARY})
-# target_link_libraries(dlsm_interface gRPC::grpc++ protobuf::libprotobuf)
+target_link_libraries(dlsm_interface dlsm_grpc_proto absl::check absl::flags absl::log ${_REFLECTION} ${_GRPC_GRPCPP} ${_PROTOBUF_LIBPROTOBUF})
+# Targets greeter_[async_](client|server)
+# foreach(_target
+#   greeter_client greeter_server
+#   greeter_callback_client greeter_callback_server
+#   greeter_async_client greeter_async_client2 greeter_async_server)
+#   add_executable(${_target} "${_target}.cc")
+#   target_link_libraries(${_target}
+#     hw_grpc_proto
+#     absl::check
+#     absl::flags
+#     absl::flags_parse
+#     absl::log
+#     ${_REFLECTION}
+#     ${_GRPC_GRPCPP}
+#     ${_PROTOBUF_LIBPROTOBUF})
+# endforeach()

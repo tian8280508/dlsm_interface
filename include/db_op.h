@@ -1,5 +1,6 @@
 #ifndef DLSMDB_H
 #define DLSMDB_H
+#define FUCK_RDMA
 
 #include "TimberSaw/db.h"
 #include <string>

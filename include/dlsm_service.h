@@ -7,7 +7,7 @@
 
 class dLSMServiceImpl final : public dlsm::dLSMService::Service {
 public:
-  dLSMServiceImpl(dlsmdb::db *db) : db_(db){};
+  explicit dLSMServiceImpl(dlsmdb::db *db) : db_(db){};
   grpc::Status SetKey(grpc::ServerContext *context,
                       const dlsm::SetKeyRequest *request,
                       dlsm::SetKeyResponse *response);
@@ -15,10 +15,6 @@ public:
   grpc::Status GetKey(grpc::ServerContext *context,
                       const dlsm::GetKeyRequest *request,
                       dlsm::GetKeyResponse *response) override;
-
-  grpc::Status DeleteKey(grpc::ServerContext *context,
-                         const dlsm::DeleteKeyRequest *request,
-                         dlsm::DeleteKeyResponse *response) override;
 
 private:
   dlsmdb::db *db_;
