@@ -5,7 +5,7 @@
 
 cmake_minimum_required(VERSION 3.8)
 
-project(HelloWorld C CXX)
+project(dlsm C CXX)
 
 include(./common.cmake)
 
@@ -18,25 +18,24 @@ get_filename_component(dlsm_proto "../pb/store/dlsm.proto" ABSOLUTE)
 get_filename_component(dlsm_proto_path "${dlsm_proto}" PATH)
 
 # Generated sources
-set(dlsm_proto_srcs "${CMAKE_CURRENT_BINARY_DIR}/dlsm.pb.cc")
-set(dlsm_proto_hdrs "${CMAKE_CURRENT_BINARY_DIR}/dlsm.pb.h")
-set(dlsm_grpc_srcs "${CMAKE_CURRENT_BINARY_DIR}/dlsm.grpc.pb.cc")
-set(dlsm_grpc_hdrs "${CMAKE_CURRENT_BINARY_DIR}/dlsm.grpc.pb.h")
+set(dlsm_proto_srcs "${CMAKE_SOURCE_DIR}/pb/dlsm.pb.cc")
+set(dlsm_proto_hdrs "${CMAKE_SOURCE_DIR}/pb/dlsm.pb.h")
+set(dlsm_grpc_srcs "${CMAKE_SOURCE_DIR}/pb/dlsm.grpc.pb.cc")
+set(dlsm_grpc_hdrs "${CMAKE_SOURCE_DIR}/pb/dlsm.grpc.pb.h")
 add_custom_command(
       OUTPUT "${dlsm_proto_srcs}" "${dlsm_proto_hdrs}" "${dlsm_grpc_srcs}" "${dlsm_grpc_hdrs}"
       COMMAND ${_PROTOBUF_PROTOC}
-      ARGS --grpc_out "${CMAKE_CURRENT_BINARY_DIR}"
-        --cpp_out "${CMAKE_CURRENT_BINARY_DIR}"
+      ARGS --grpc_out "${CMAKE_SOURCE_DIR}/pb"
+        --cpp_out "${CMAKE_SOURCE_DIR}/pb"
         -I "${dlsm_proto_path}"
         --plugin=protoc-gen-grpc="${_GRPC_CPP_PLUGIN_EXECUTABLE}"
         "${dlsm_proto}"
       DEPENDS "${dlsm_proto}")
 
 # Include generated *.pb.h files
-include_directories("${CMAKE_CURRENT_BINARY_DIR}")
+include_directories("${CMAKE_SOURCE_DIR}/pb")
 include_directories("${CMAKE_SOURCE_DIR}/include")
-message(${CMAKE_CURRENT_BINARY_DIR})
-message(${CMAKE_SOURCE_DIR})
+
 # 创建一个库
 add_library(dlsm_grpc_proto
   ${dlsm_proto_srcs}

@@ -1,5 +1,6 @@
 #include "db_op.h"
 #include "dlsm_service.h"
+#include <cstdio>
 
 int main() {
   dlsmdb::db *db = dlsmdb::db::getInstance();

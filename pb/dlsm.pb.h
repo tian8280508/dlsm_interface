@@ -62,12 +62,21 @@ extern GetKeyRequestDefaultTypeInternal _GetKeyRequest_default_instance_;
 class GetKeyResponse;
 struct GetKeyResponseDefaultTypeInternal;
 extern GetKeyResponseDefaultTypeInternal _GetKeyResponse_default_instance_;
+class KVPairs;
+struct KVPairsDefaultTypeInternal;
+extern KVPairsDefaultTypeInternal _KVPairs_default_instance_;
 class SetKeyRequest;
 struct SetKeyRequestDefaultTypeInternal;
 extern SetKeyRequestDefaultTypeInternal _SetKeyRequest_default_instance_;
 class SetKeyResponse;
 struct SetKeyResponseDefaultTypeInternal;
 extern SetKeyResponseDefaultTypeInternal _SetKeyResponse_default_instance_;
+class WriteBatchRequest;
+struct WriteBatchRequestDefaultTypeInternal;
+extern WriteBatchRequestDefaultTypeInternal _WriteBatchRequest_default_instance_;
+class WriteBatchResponse;
+struct WriteBatchResponseDefaultTypeInternal;
+extern WriteBatchResponseDefaultTypeInternal _WriteBatchResponse_default_instance_;
 }  // namespace dlsm
 namespace google {
 namespace protobuf {
@@ -79,6 +88,191 @@ namespace dlsm {
 // ===================================================================
 
 
+// -------------------------------------------------------------------
+
+class WriteBatchResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:dlsm.WriteBatchResponse) */ {
+ public:
+  inline WriteBatchResponse() : WriteBatchResponse(nullptr) {}
+  ~WriteBatchResponse() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR WriteBatchResponse(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline WriteBatchResponse(const WriteBatchResponse& from) : WriteBatchResponse(nullptr, from) {}
+  inline WriteBatchResponse(WriteBatchResponse&& from) noexcept
+      : WriteBatchResponse(nullptr, std::move(from)) {}
+  inline WriteBatchResponse& operator=(const WriteBatchResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline WriteBatchResponse& operator=(WriteBatchResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const WriteBatchResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const WriteBatchResponse* internal_default_instance() {
+    return reinterpret_cast<const WriteBatchResponse*>(
+        &_WriteBatchResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 4;
+  friend void swap(WriteBatchResponse& a, WriteBatchResponse& b) { a.Swap(&b); }
+  inline void Swap(WriteBatchResponse* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(WriteBatchResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  WriteBatchResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<WriteBatchResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const WriteBatchResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const WriteBatchResponse& from) { WriteBatchResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(WriteBatchResponse* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "dlsm.WriteBatchResponse"; }
+
+ protected:
+  explicit WriteBatchResponse(::google::protobuf::Arena* arena);
+  WriteBatchResponse(::google::protobuf::Arena* arena, const WriteBatchResponse& from);
+  WriteBatchResponse(::google::protobuf::Arena* arena, WriteBatchResponse&& from) noexcept
+      : WriteBatchResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::MessageLite::ClassData* GetClassData()
+      const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const final;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kMessageFieldNumber = 2,
+    kCodeFieldNumber = 1,
+  };
+  // string message = 2;
+  void clear_message() ;
+  const std::string& message() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_message(Arg_&& arg, Args_... args);
+  std::string* mutable_message();
+  PROTOBUF_NODISCARD std::string* release_message();
+  void set_allocated_message(std::string* value);
+
+  private:
+  const std::string& _internal_message() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_message(
+      const std::string& value);
+  std::string* _internal_mutable_message();
+
+  public:
+  // uint32 code = 1;
+  void clear_code() ;
+  ::uint32_t code() const;
+  void set_code(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_code() const;
+  void _internal_set_code(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:dlsm.WriteBatchResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      39, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::ArenaStringPtr message_;
+    ::uint32_t code_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_dlsm_2eproto;
+};
 // -------------------------------------------------------------------
 
 class SetKeyResponse final : public ::google::protobuf::Message
@@ -136,7 +330,7 @@ class SetKeyResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const SetKeyResponse*>(
         &_SetKeyResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 1;
+  static constexpr int kIndexInFileMessages = 2;
   friend void swap(SetKeyResponse& a, SetKeyResponse& b) { a.Swap(&b); }
   inline void Swap(SetKeyResponse* other) {
     if (other == this) return;
@@ -321,7 +515,7 @@ class SetKeyRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const SetKeyRequest*>(
         &_SetKeyRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 0;
+  static constexpr int kIndexInFileMessages = 1;
   friend void swap(SetKeyRequest& a, SetKeyRequest& b) { a.Swap(&b); }
   inline void Swap(SetKeyRequest* other) {
     if (other == this) return;
@@ -394,7 +588,7 @@ class SetKeyRequest final : public ::google::protobuf::Message
     kKeyFieldNumber = 1,
     kValueFieldNumber = 2,
   };
-  // string key = 1;
+  // bytes key = 1;
   void clear_key() ;
   const std::string& key() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -410,7 +604,7 @@ class SetKeyRequest final : public ::google::protobuf::Message
   std::string* _internal_mutable_key();
 
   public:
-  // string value = 2;
+  // bytes value = 2;
   void clear_value() ;
   const std::string& value() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -432,7 +626,198 @@ class SetKeyRequest final : public ::google::protobuf::Message
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 2, 0,
-      35, 2>
+      0, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::ArenaStringPtr key_;
+    ::google::protobuf::internal::ArenaStringPtr value_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_dlsm_2eproto;
+};
+// -------------------------------------------------------------------
+
+class KVPairs final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:dlsm.KVPairs) */ {
+ public:
+  inline KVPairs() : KVPairs(nullptr) {}
+  ~KVPairs() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR KVPairs(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline KVPairs(const KVPairs& from) : KVPairs(nullptr, from) {}
+  inline KVPairs(KVPairs&& from) noexcept
+      : KVPairs(nullptr, std::move(from)) {}
+  inline KVPairs& operator=(const KVPairs& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline KVPairs& operator=(KVPairs&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const KVPairs& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const KVPairs* internal_default_instance() {
+    return reinterpret_cast<const KVPairs*>(
+        &_KVPairs_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 0;
+  friend void swap(KVPairs& a, KVPairs& b) { a.Swap(&b); }
+  inline void Swap(KVPairs* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(KVPairs* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  KVPairs* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<KVPairs>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const KVPairs& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const KVPairs& from) { KVPairs::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(KVPairs* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "dlsm.KVPairs"; }
+
+ protected:
+  explicit KVPairs(::google::protobuf::Arena* arena);
+  KVPairs(::google::protobuf::Arena* arena, const KVPairs& from);
+  KVPairs(::google::protobuf::Arena* arena, KVPairs&& from) noexcept
+      : KVPairs(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::MessageLite::ClassData* GetClassData()
+      const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const final;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kKeyFieldNumber = 1,
+    kValueFieldNumber = 2,
+  };
+  // bytes key = 1;
+  void clear_key() ;
+  const std::string& key() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_key(Arg_&& arg, Args_... args);
+  std::string* mutable_key();
+  PROTOBUF_NODISCARD std::string* release_key();
+  void set_allocated_key(std::string* value);
+
+  private:
+  const std::string& _internal_key() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_key(
+      const std::string& value);
+  std::string* _internal_mutable_key();
+
+  public:
+  // bytes value = 2;
+  void clear_value() ;
+  const std::string& value() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_value(Arg_&& arg, Args_... args);
+  std::string* mutable_value();
+  PROTOBUF_NODISCARD std::string* release_value();
+  void set_allocated_value(std::string* value);
+
+  private:
+  const std::string& _internal_value() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_value(
+      const std::string& value);
+  std::string* _internal_mutable_value();
+
+  public:
+  // @@protoc_insertion_point(class_scope:dlsm.KVPairs)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -512,7 +897,7 @@ class GetKeyResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const GetKeyResponse*>(
         &_GetKeyResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 3;
+  static constexpr int kIndexInFileMessages = 6;
   friend void swap(GetKeyResponse& a, GetKeyResponse& b) { a.Swap(&b); }
   inline void Swap(GetKeyResponse* other) {
     if (other == this) return;
@@ -586,7 +971,7 @@ class GetKeyResponse final : public ::google::protobuf::Message
     kMessageFieldNumber = 3,
     kCodeFieldNumber = 2,
   };
-  // string value = 1;
+  // bytes value = 1;
   void clear_value() ;
   const std::string& value() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -634,7 +1019,7 @@ class GetKeyResponse final : public ::google::protobuf::Message
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       2, 3, 0,
-      40, 2>
+      35, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -715,7 +1100,7 @@ class GetKeyRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const GetKeyRequest*>(
         &_GetKeyRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 2;
+  static constexpr int kIndexInFileMessages = 5;
   friend void swap(GetKeyRequest& a, GetKeyRequest& b) { a.Swap(&b); }
   inline void Swap(GetKeyRequest* other) {
     if (other == this) return;
@@ -888,7 +1273,7 @@ class DeleteKeyResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const DeleteKeyResponse*>(
         &_DeleteKeyResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 5;
+  static constexpr int kIndexInFileMessages = 8;
   friend void swap(DeleteKeyResponse& a, DeleteKeyResponse& b) { a.Swap(&b); }
   inline void Swap(DeleteKeyResponse* other) {
     if (other == this) return;
@@ -1073,7 +1458,7 @@ class DeleteKeyRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const DeleteKeyRequest*>(
         &_DeleteKeyRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 4;
+  static constexpr int kIndexInFileMessages = 7;
   friend void swap(DeleteKeyRequest& a, DeleteKeyRequest& b) { a.Swap(&b); }
   inline void Swap(DeleteKeyRequest* other) {
     if (other == this) return;
@@ -1189,6 +1574,180 @@ class DeleteKeyRequest final : public ::google::protobuf::Message
   union { Impl_ _impl_; };
   friend struct ::TableStruct_dlsm_2eproto;
 };
+// -------------------------------------------------------------------
+
+class WriteBatchRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:dlsm.WriteBatchRequest) */ {
+ public:
+  inline WriteBatchRequest() : WriteBatchRequest(nullptr) {}
+  ~WriteBatchRequest() override;
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR WriteBatchRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline WriteBatchRequest(const WriteBatchRequest& from) : WriteBatchRequest(nullptr, from) {}
+  inline WriteBatchRequest(WriteBatchRequest&& from) noexcept
+      : WriteBatchRequest(nullptr, std::move(from)) {}
+  inline WriteBatchRequest& operator=(const WriteBatchRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline WriteBatchRequest& operator=(WriteBatchRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+#ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+#endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const WriteBatchRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const WriteBatchRequest* internal_default_instance() {
+    return reinterpret_cast<const WriteBatchRequest*>(
+        &_WriteBatchRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 3;
+  friend void swap(WriteBatchRequest& a, WriteBatchRequest& b) { a.Swap(&b); }
+  inline void Swap(WriteBatchRequest* other) {
+    if (other == this) return;
+#ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr && GetArena() == other->GetArena()) {
+#else   // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+#endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(WriteBatchRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  WriteBatchRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return ::google::protobuf::Message::DefaultConstruct<WriteBatchRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const WriteBatchRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const WriteBatchRequest& from) { WriteBatchRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(WriteBatchRequest* other);
+ private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() { return "dlsm.WriteBatchRequest"; }
+
+ protected:
+  explicit WriteBatchRequest(::google::protobuf::Arena* arena);
+  WriteBatchRequest(::google::protobuf::Arena* arena, const WriteBatchRequest& from);
+  WriteBatchRequest(::google::protobuf::Arena* arena, WriteBatchRequest&& from) noexcept
+      : WriteBatchRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::MessageLite::ClassData* GetClassData()
+      const final;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const final;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kKvPairsFieldNumber = 1,
+  };
+  // repeated .dlsm.KVPairs kvPairs = 1;
+  int kvpairs_size() const;
+  private:
+  int _internal_kvpairs_size() const;
+
+  public:
+  void clear_kvpairs() ;
+  ::dlsm::KVPairs* mutable_kvpairs(int index);
+  ::google::protobuf::RepeatedPtrField<::dlsm::KVPairs>* mutable_kvpairs();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::dlsm::KVPairs>& _internal_kvpairs() const;
+  ::google::protobuf::RepeatedPtrField<::dlsm::KVPairs>* _internal_mutable_kvpairs();
+  public:
+  const ::dlsm::KVPairs& kvpairs(int index) const;
+  ::dlsm::KVPairs* add_kvpairs();
+  const ::google::protobuf::RepeatedPtrField<::dlsm::KVPairs>& kvpairs() const;
+  // @@protoc_insertion_point(class_scope:dlsm.WriteBatchRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 1,
+      0, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::RepeatedPtrField< ::dlsm::KVPairs > kvpairs_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_dlsm_2eproto;
+};
 
 // ===================================================================
 
@@ -1204,9 +1763,113 @@ class DeleteKeyRequest final : public ::google::protobuf::Message
 #endif  // __GNUC__
 // -------------------------------------------------------------------
 
+// KVPairs
+
+// bytes key = 1;
+inline void KVPairs::clear_key() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.key_.ClearToEmpty();
+}
+inline const std::string& KVPairs::key() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:dlsm.KVPairs.key)
+  return _internal_key();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void KVPairs::set_key(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.key_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:dlsm.KVPairs.key)
+}
+inline std::string* KVPairs::mutable_key() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_key();
+  // @@protoc_insertion_point(field_mutable:dlsm.KVPairs.key)
+  return _s;
+}
+inline const std::string& KVPairs::_internal_key() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.key_.Get();
+}
+inline void KVPairs::_internal_set_key(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.key_.Set(value, GetArena());
+}
+inline std::string* KVPairs::_internal_mutable_key() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _impl_.key_.Mutable( GetArena());
+}
+inline std::string* KVPairs::release_key() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:dlsm.KVPairs.key)
+  return _impl_.key_.Release();
+}
+inline void KVPairs::set_allocated_key(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.key_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.key_.IsDefault()) {
+          _impl_.key_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:dlsm.KVPairs.key)
+}
+
+// bytes value = 2;
+inline void KVPairs::clear_value() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.value_.ClearToEmpty();
+}
+inline const std::string& KVPairs::value() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:dlsm.KVPairs.value)
+  return _internal_value();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void KVPairs::set_value(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.value_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:dlsm.KVPairs.value)
+}
+inline std::string* KVPairs::mutable_value() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_value();
+  // @@protoc_insertion_point(field_mutable:dlsm.KVPairs.value)
+  return _s;
+}
+inline const std::string& KVPairs::_internal_value() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.value_.Get();
+}
+inline void KVPairs::_internal_set_value(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.value_.Set(value, GetArena());
+}
+inline std::string* KVPairs::_internal_mutable_value() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _impl_.value_.Mutable( GetArena());
+}
+inline std::string* KVPairs::release_value() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:dlsm.KVPairs.value)
+  return _impl_.value_.Release();
+}
+inline void KVPairs::set_allocated_value(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.value_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.value_.IsDefault()) {
+          _impl_.value_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:dlsm.KVPairs.value)
+}
+
+// -------------------------------------------------------------------
+
 // SetKeyRequest
 
-// string key = 1;
+// bytes key = 1;
 inline void SetKeyRequest::clear_key() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.key_.ClearToEmpty();
@@ -1220,7 +1883,7 @@ template <typename Arg_, typename... Args_>
 inline PROTOBUF_ALWAYS_INLINE void SetKeyRequest::set_key(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.key_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.key_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:dlsm.SetKeyRequest.key)
 }
 inline std::string* SetKeyRequest::mutable_key() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -1256,7 +1919,7 @@ inline void SetKeyRequest::set_allocated_key(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:dlsm.SetKeyRequest.key)
 }
 
-// string value = 2;
+// bytes value = 2;
 inline void SetKeyRequest::clear_value() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.value_.ClearToEmpty();
@@ -1270,7 +1933,7 @@ template <typename Arg_, typename... Args_>
 inline PROTOBUF_ALWAYS_INLINE void SetKeyRequest::set_value(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.value_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.value_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:dlsm.SetKeyRequest.value)
 }
 inline std::string* SetKeyRequest::mutable_value() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -1384,6 +2047,135 @@ inline void SetKeyResponse::set_allocated_message(std::string* value) {
 
 // -------------------------------------------------------------------
 
+// WriteBatchRequest
+
+// repeated .dlsm.KVPairs kvPairs = 1;
+inline int WriteBatchRequest::_internal_kvpairs_size() const {
+  return _internal_kvpairs().size();
+}
+inline int WriteBatchRequest::kvpairs_size() const {
+  return _internal_kvpairs_size();
+}
+inline void WriteBatchRequest::clear_kvpairs() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.kvpairs_.Clear();
+}
+inline ::dlsm::KVPairs* WriteBatchRequest::mutable_kvpairs(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:dlsm.WriteBatchRequest.kvPairs)
+  return _internal_mutable_kvpairs()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::dlsm::KVPairs>* WriteBatchRequest::mutable_kvpairs()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:dlsm.WriteBatchRequest.kvPairs)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_kvpairs();
+}
+inline const ::dlsm::KVPairs& WriteBatchRequest::kvpairs(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:dlsm.WriteBatchRequest.kvPairs)
+  return _internal_kvpairs().Get(index);
+}
+inline ::dlsm::KVPairs* WriteBatchRequest::add_kvpairs() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::dlsm::KVPairs* _add = _internal_mutable_kvpairs()->Add();
+  // @@protoc_insertion_point(field_add:dlsm.WriteBatchRequest.kvPairs)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::dlsm::KVPairs>& WriteBatchRequest::kvpairs() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:dlsm.WriteBatchRequest.kvPairs)
+  return _internal_kvpairs();
+}
+inline const ::google::protobuf::RepeatedPtrField<::dlsm::KVPairs>&
+WriteBatchRequest::_internal_kvpairs() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.kvpairs_;
+}
+inline ::google::protobuf::RepeatedPtrField<::dlsm::KVPairs>*
+WriteBatchRequest::_internal_mutable_kvpairs() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.kvpairs_;
+}
+
+// -------------------------------------------------------------------
+
+// WriteBatchResponse
+
+// uint32 code = 1;
+inline void WriteBatchResponse::clear_code() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.code_ = 0u;
+}
+inline ::uint32_t WriteBatchResponse::code() const {
+  // @@protoc_insertion_point(field_get:dlsm.WriteBatchResponse.code)
+  return _internal_code();
+}
+inline void WriteBatchResponse::set_code(::uint32_t value) {
+  _internal_set_code(value);
+  // @@protoc_insertion_point(field_set:dlsm.WriteBatchResponse.code)
+}
+inline ::uint32_t WriteBatchResponse::_internal_code() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.code_;
+}
+inline void WriteBatchResponse::_internal_set_code(::uint32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.code_ = value;
+}
+
+// string message = 2;
+inline void WriteBatchResponse::clear_message() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.message_.ClearToEmpty();
+}
+inline const std::string& WriteBatchResponse::message() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:dlsm.WriteBatchResponse.message)
+  return _internal_message();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void WriteBatchResponse::set_message(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.message_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:dlsm.WriteBatchResponse.message)
+}
+inline std::string* WriteBatchResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_message();
+  // @@protoc_insertion_point(field_mutable:dlsm.WriteBatchResponse.message)
+  return _s;
+}
+inline const std::string& WriteBatchResponse::_internal_message() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.message_.Get();
+}
+inline void WriteBatchResponse::_internal_set_message(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.message_.Set(value, GetArena());
+}
+inline std::string* WriteBatchResponse::_internal_mutable_message() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _impl_.message_.Mutable( GetArena());
+}
+inline std::string* WriteBatchResponse::release_message() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:dlsm.WriteBatchResponse.message)
+  return _impl_.message_.Release();
+}
+inline void WriteBatchResponse::set_allocated_message(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.message_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.message_.IsDefault()) {
+          _impl_.message_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:dlsm.WriteBatchResponse.message)
+}
+
+// -------------------------------------------------------------------
+
 // GetKeyRequest
 
 // string key = 1;
@@ -1440,7 +2232,7 @@ inline void GetKeyRequest::set_allocated_key(std::string* value) {
 
 // GetKeyResponse
 
-// string value = 1;
+// bytes value = 1;
 inline void GetKeyResponse::clear_value() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.value_.ClearToEmpty();
@@ -1454,7 +2246,7 @@ template <typename Arg_, typename... Args_>
 inline PROTOBUF_ALWAYS_INLINE void GetKeyResponse::set_value(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.value_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.value_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:dlsm.GetKeyResponse.value)
 }
 inline std::string* GetKeyResponse::mutable_value() ABSL_ATTRIBUTE_LIFETIME_BOUND {

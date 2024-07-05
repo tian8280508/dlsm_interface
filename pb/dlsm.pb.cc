@@ -23,6 +23,28 @@ namespace _pbi = ::google::protobuf::internal;
 namespace _fl = ::google::protobuf::internal::field_layout;
 namespace dlsm {
 
+inline constexpr WriteBatchResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : message_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        code_{0u},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR WriteBatchResponse::WriteBatchResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct WriteBatchResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR WriteBatchResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~WriteBatchResponseDefaultTypeInternal() {}
+  union {
+    WriteBatchResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 WriteBatchResponseDefaultTypeInternal _WriteBatchResponse_default_instance_;
+
 inline constexpr SetKeyResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : message_(
@@ -68,6 +90,30 @@ struct SetKeyRequestDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetKeyRequestDefaultTypeInternal _SetKeyRequest_default_instance_;
+
+inline constexpr KVPairs::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : key_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        value_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR KVPairs::KVPairs(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct KVPairsDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR KVPairsDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~KVPairsDefaultTypeInternal() {}
+  union {
+    KVPairs _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 KVPairsDefaultTypeInternal _KVPairs_default_instance_;
 
 inline constexpr GetKeyResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -157,8 +203,27 @@ struct DeleteKeyRequestDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DeleteKeyRequestDefaultTypeInternal _DeleteKeyRequest_default_instance_;
+
+inline constexpr WriteBatchRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : kvpairs_{},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR WriteBatchRequest::WriteBatchRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct WriteBatchRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR WriteBatchRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~WriteBatchRequestDefaultTypeInternal() {}
+  union {
+    WriteBatchRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 WriteBatchRequestDefaultTypeInternal _WriteBatchRequest_default_instance_;
 }  // namespace dlsm
-static ::_pb::Metadata file_level_metadata_dlsm_2eproto[6];
+static ::_pb::Metadata file_level_metadata_dlsm_2eproto[9];
 static constexpr const ::_pb::EnumDescriptor**
     file_level_enum_descriptors_dlsm_2eproto = nullptr;
 static constexpr const ::_pb::ServiceDescriptor**
@@ -166,6 +231,16 @@ static constexpr const ::_pb::ServiceDescriptor**
 const ::uint32_t
     TableStruct_dlsm_2eproto::offsets[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
         protodesc_cold) = {
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::dlsm::KVPairs, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::dlsm::KVPairs, _impl_.key_),
+        PROTOBUF_FIELD_OFFSET(::dlsm::KVPairs, _impl_.value_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::dlsm::SetKeyRequest, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -186,6 +261,25 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::dlsm::SetKeyResponse, _impl_.code_),
         PROTOBUF_FIELD_OFFSET(::dlsm::SetKeyResponse, _impl_.message_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::dlsm::WriteBatchRequest, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::dlsm::WriteBatchRequest, _impl_.kvpairs_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::dlsm::WriteBatchResponse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::dlsm::WriteBatchResponse, _impl_.code_),
+        PROTOBUF_FIELD_OFFSET(::dlsm::WriteBatchResponse, _impl_.message_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::dlsm::GetKeyRequest, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -229,16 +323,22 @@ const ::uint32_t
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-        {0, -1, -1, sizeof(::dlsm::SetKeyRequest)},
-        {10, -1, -1, sizeof(::dlsm::SetKeyResponse)},
-        {20, -1, -1, sizeof(::dlsm::GetKeyRequest)},
-        {29, -1, -1, sizeof(::dlsm::GetKeyResponse)},
-        {40, -1, -1, sizeof(::dlsm::DeleteKeyRequest)},
-        {49, -1, -1, sizeof(::dlsm::DeleteKeyResponse)},
+        {0, -1, -1, sizeof(::dlsm::KVPairs)},
+        {10, -1, -1, sizeof(::dlsm::SetKeyRequest)},
+        {20, -1, -1, sizeof(::dlsm::SetKeyResponse)},
+        {30, -1, -1, sizeof(::dlsm::WriteBatchRequest)},
+        {39, -1, -1, sizeof(::dlsm::WriteBatchResponse)},
+        {49, -1, -1, sizeof(::dlsm::GetKeyRequest)},
+        {58, -1, -1, sizeof(::dlsm::GetKeyResponse)},
+        {69, -1, -1, sizeof(::dlsm::DeleteKeyRequest)},
+        {78, -1, -1, sizeof(::dlsm::DeleteKeyResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
+    &::dlsm::_KVPairs_default_instance_._instance,
     &::dlsm::_SetKeyRequest_default_instance_._instance,
     &::dlsm::_SetKeyResponse_default_instance_._instance,
+    &::dlsm::_WriteBatchRequest_default_instance_._instance,
+    &::dlsm::_WriteBatchResponse_default_instance_._instance,
     &::dlsm::_GetKeyRequest_default_instance_._instance,
     &::dlsm::_GetKeyResponse_default_instance_._instance,
     &::dlsm::_DeleteKeyRequest_default_instance_._instance,
@@ -246,32 +346,36 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 const char descriptor_table_protodef_dlsm_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\ndlsm.proto\022\004dlsm\"+\n\rSetKeyRequest\022\013\n\003k"
-    "ey\030\001 \001(\t\022\r\n\005value\030\002 \001(\t\"/\n\016SetKeyRespons"
-    "e\022\014\n\004code\030\001 \001(\r\022\017\n\007message\030\002 \001(\t\"\034\n\rGetK"
-    "eyRequest\022\013\n\003key\030\001 \001(\t\">\n\016GetKeyResponse"
-    "\022\r\n\005value\030\001 \001(\t\022\014\n\004code\030\002 \001(\r\022\017\n\007message"
-    "\030\003 \001(\t\"\037\n\020DeleteKeyRequest\022\013\n\003key\030\001 \001(\t\""
-    "2\n\021DeleteKeyResponse\022\014\n\004code\030\001 \001(\r\022\017\n\007me"
-    "ssage\030\002 \001(\t2\273\001\n\013dLSMService\0225\n\006SetKey\022\023."
-    "dlsm.GetKeyRequest\032\024.dlsm.SetKeyResponse"
-    "\"\000\0225\n\006GetKey\022\023.dlsm.GetKeyRequest\032\024.dlsm"
-    ".GetKeyResponse\"\000\022>\n\tDeleteKey\022\026.dlsm.De"
-    "leteKeyRequest\032\027.dlsm.DeleteKeyResponse\""
-    "\000B*Z(chainmaker.org/chainmaker/pb-go/v2/"
-    "storeb\006proto3"
+    "\n\ndlsm.proto\022\004dlsm\"%\n\007KVPairs\022\013\n\003key\030\001 \001"
+    "(\014\022\r\n\005value\030\002 \001(\014\"+\n\rSetKeyRequest\022\013\n\003ke"
+    "y\030\001 \001(\014\022\r\n\005value\030\002 \001(\014\"/\n\016SetKeyResponse"
+    "\022\014\n\004code\030\001 \001(\r\022\017\n\007message\030\002 \001(\t\"3\n\021Write"
+    "BatchRequest\022\036\n\007kvPairs\030\001 \003(\0132\r.dlsm.KVP"
+    "airs\"3\n\022WriteBatchResponse\022\014\n\004code\030\001 \001(\r"
+    "\022\017\n\007message\030\002 \001(\t\"\034\n\rGetKeyRequest\022\013\n\003ke"
+    "y\030\001 \001(\t\">\n\016GetKeyResponse\022\r\n\005value\030\001 \001(\014"
+    "\022\014\n\004code\030\002 \001(\r\022\017\n\007message\030\003 \001(\t\"\037\n\020Delet"
+    "eKeyRequest\022\013\n\003key\030\001 \001(\t\"2\n\021DeleteKeyRes"
+    "ponse\022\014\n\004code\030\001 \001(\r\022\017\n\007message\030\002 \001(\t2\276\001\n"
+    "\013dLSMService\0225\n\006SetKey\022\023.dlsm.SetKeyRequ"
+    "est\032\024.dlsm.SetKeyResponse\"\000\022A\n\nWriteBatc"
+    "h\022\027.dlsm.WriteBatchRequest\032\030.dlsm.WriteB"
+    "atchResponse\"\000\0225\n\006GetKey\022\023.dlsm.GetKeyRe"
+    "quest\032\024.dlsm.GetKeyResponse\"\000B*Z(chainma"
+    "ker.org/chainmaker/pb-go/v2/storeb\006proto"
+    "3"
 };
 static ::absl::once_flag descriptor_table_dlsm_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_dlsm_2eproto = {
     false,
     false,
-    533,
+    681,
     descriptor_table_protodef_dlsm_2eproto,
     "dlsm.proto",
     &descriptor_table_dlsm_2eproto_once,
     nullptr,
     0,
-    6,
+    9,
     schemas,
     file_default_instances,
     TableStruct_dlsm_2eproto::offsets,
@@ -295,6 +399,224 @@ PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_dlsm_2ep
   return &descriptor_table_dlsm_2eproto;
 }
 namespace dlsm {
+// ===================================================================
+
+class KVPairs::_Internal {
+ public:
+};
+
+KVPairs::KVPairs(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:dlsm.KVPairs)
+}
+inline PROTOBUF_NDEBUG_INLINE KVPairs::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : key_(arena, from.key_),
+        value_(arena, from.value_),
+        _cached_size_{0} {}
+
+KVPairs::KVPairs(
+    ::google::protobuf::Arena* arena,
+    const KVPairs& from)
+    : ::google::protobuf::Message(arena) {
+  KVPairs* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:dlsm.KVPairs)
+}
+inline PROTOBUF_NDEBUG_INLINE KVPairs::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : key_(arena),
+        value_(arena),
+        _cached_size_{0} {}
+
+inline void KVPairs::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+KVPairs::~KVPairs() {
+  // @@protoc_insertion_point(destructor:dlsm.KVPairs)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void KVPairs::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.key_.Destroy();
+  _impl_.value_.Destroy();
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+KVPairs::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              nullptr,  // OnDemandRegisterArenaDtor
+              PROTOBUF_FIELD_OFFSET(KVPairs, _impl_._cached_size_),
+              false,
+          },
+          &KVPairs::MergeImpl,
+          &KVPairs::kDescriptorMethods,
+      };
+  return &_data_;
+}
+PROTOBUF_NOINLINE void KVPairs::Clear() {
+// @@protoc_insertion_point(message_clear_start:dlsm.KVPairs)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.key_.ClearToEmpty();
+  _impl_.value_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* KVPairs::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> KVPairs::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_KVPairs_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::dlsm::KVPairs>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // bytes value = 2;
+    {::_pbi::TcParser::FastBS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(KVPairs, _impl_.value_)}},
+    // bytes key = 1;
+    {::_pbi::TcParser::FastBS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(KVPairs, _impl_.key_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bytes key = 1;
+    {PROTOBUF_FIELD_OFFSET(KVPairs, _impl_.key_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes value = 2;
+    {PROTOBUF_FIELD_OFFSET(KVPairs, _impl_.value_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* KVPairs::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:dlsm.KVPairs)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // bytes key = 1;
+  if (!this->_internal_key().empty()) {
+    const std::string& _s = this->_internal_key();
+    target = stream->WriteBytesMaybeAliased(1, _s, target);
+  }
+
+  // bytes value = 2;
+  if (!this->_internal_value().empty()) {
+    const std::string& _s = this->_internal_value();
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:dlsm.KVPairs)
+  return target;
+}
+
+::size_t KVPairs::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:dlsm.KVPairs)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bytes key = 1;
+  if (!this->_internal_key().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_key());
+  }
+
+  // bytes value = 2;
+  if (!this->_internal_value().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_value());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void KVPairs::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<KVPairs*>(&to_msg);
+  auto& from = static_cast<const KVPairs&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:dlsm.KVPairs)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_key().empty()) {
+    _this->_internal_set_key(from._internal_key());
+  }
+  if (!from._internal_value().empty()) {
+    _this->_internal_set_value(from._internal_value());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void KVPairs::CopyFrom(const KVPairs& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:dlsm.KVPairs)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool KVPairs::IsInitialized() const {
+  return true;
+}
+
+void KVPairs::InternalSwap(KVPairs* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.key_, &other->_impl_.key_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.value_, &other->_impl_.value_, arena);
+}
+
+::google::protobuf::Metadata KVPairs::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(&descriptor_table_dlsm_2eproto_getter,
+                                   &descriptor_table_dlsm_2eproto_once,
+                                   file_level_metadata_dlsm_2eproto[0]);
+}
 // ===================================================================
 
 class SetKeyRequest::_Internal {
@@ -381,7 +703,7 @@ const char* SetKeyRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 35, 2> SetKeyRequest::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> SetKeyRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -398,28 +720,24 @@ const ::_pbi::TcParseTable<1, 2, 0, 35, 2> SetKeyRequest::_table_ = {
     ::_pbi::TcParser::GetTable<::dlsm::SetKeyRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // string value = 2;
-    {::_pbi::TcParser::FastUS1,
+    // bytes value = 2;
+    {::_pbi::TcParser::FastBS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(SetKeyRequest, _impl_.value_)}},
-    // string key = 1;
-    {::_pbi::TcParser::FastUS1,
+    // bytes key = 1;
+    {::_pbi::TcParser::FastBS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(SetKeyRequest, _impl_.key_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string key = 1;
+    // bytes key = 1;
     {PROTOBUF_FIELD_OFFSET(SetKeyRequest, _impl_.key_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string value = 2;
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes value = 2;
     {PROTOBUF_FIELD_OFFSET(SetKeyRequest, _impl_.value_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\22\3\5\0\0\0\0\0"
-    "dlsm.SetKeyRequest"
-    "key"
-    "value"
   }},
 };
 
@@ -430,20 +748,16 @@ const ::_pbi::TcParseTable<1, 2, 0, 35, 2> SetKeyRequest::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // string key = 1;
+  // bytes key = 1;
   if (!this->_internal_key().empty()) {
     const std::string& _s = this->_internal_key();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "dlsm.SetKeyRequest.key");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
+    target = stream->WriteBytesMaybeAliased(1, _s, target);
   }
 
-  // string value = 2;
+  // bytes value = 2;
   if (!this->_internal_value().empty()) {
     const std::string& _s = this->_internal_value();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "dlsm.SetKeyRequest.value");
-    target = stream->WriteStringMaybeAliased(2, _s, target);
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -463,15 +777,15 @@ const ::_pbi::TcParseTable<1, 2, 0, 35, 2> SetKeyRequest::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string key = 1;
+  // bytes key = 1;
   if (!this->_internal_key().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_key());
   }
 
-  // string value = 2;
+  // bytes value = 2;
   if (!this->_internal_value().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_value());
   }
 
@@ -519,7 +833,7 @@ void SetKeyRequest::InternalSwap(SetKeyRequest* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata SetKeyRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(&descriptor_table_dlsm_2eproto_getter,
                                    &descriptor_table_dlsm_2eproto_once,
-                                   file_level_metadata_dlsm_2eproto[0]);
+                                   file_level_metadata_dlsm_2eproto[1]);
 }
 // ===================================================================
 
@@ -742,7 +1056,422 @@ void SetKeyResponse::InternalSwap(SetKeyResponse* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata SetKeyResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(&descriptor_table_dlsm_2eproto_getter,
                                    &descriptor_table_dlsm_2eproto_once,
-                                   file_level_metadata_dlsm_2eproto[1]);
+                                   file_level_metadata_dlsm_2eproto[2]);
+}
+// ===================================================================
+
+class WriteBatchRequest::_Internal {
+ public:
+};
+
+WriteBatchRequest::WriteBatchRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:dlsm.WriteBatchRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE WriteBatchRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : kvpairs_{visibility, arena, from.kvpairs_},
+        _cached_size_{0} {}
+
+WriteBatchRequest::WriteBatchRequest(
+    ::google::protobuf::Arena* arena,
+    const WriteBatchRequest& from)
+    : ::google::protobuf::Message(arena) {
+  WriteBatchRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:dlsm.WriteBatchRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE WriteBatchRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : kvpairs_{visibility, arena},
+        _cached_size_{0} {}
+
+inline void WriteBatchRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+WriteBatchRequest::~WriteBatchRequest() {
+  // @@protoc_insertion_point(destructor:dlsm.WriteBatchRequest)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void WriteBatchRequest::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+WriteBatchRequest::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              nullptr,  // OnDemandRegisterArenaDtor
+              PROTOBUF_FIELD_OFFSET(WriteBatchRequest, _impl_._cached_size_),
+              false,
+          },
+          &WriteBatchRequest::MergeImpl,
+          &WriteBatchRequest::kDescriptorMethods,
+      };
+  return &_data_;
+}
+PROTOBUF_NOINLINE void WriteBatchRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:dlsm.WriteBatchRequest)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.kvpairs_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* WriteBatchRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> WriteBatchRequest::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_WriteBatchRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::dlsm::WriteBatchRequest>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // repeated .dlsm.KVPairs kvPairs = 1;
+    {::_pbi::TcParser::FastMtR1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(WriteBatchRequest, _impl_.kvpairs_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // repeated .dlsm.KVPairs kvPairs = 1;
+    {PROTOBUF_FIELD_OFFSET(WriteBatchRequest, _impl_.kvpairs_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::dlsm::KVPairs>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* WriteBatchRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:dlsm.WriteBatchRequest)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // repeated .dlsm.KVPairs kvPairs = 1;
+  for (unsigned i = 0, n = static_cast<unsigned>(
+                           this->_internal_kvpairs_size());
+       i < n; i++) {
+    const auto& repfield = this->_internal_kvpairs().Get(i);
+    target =
+        ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+            1, repfield, repfield.GetCachedSize(),
+            target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:dlsm.WriteBatchRequest)
+  return target;
+}
+
+::size_t WriteBatchRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:dlsm.WriteBatchRequest)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .dlsm.KVPairs kvPairs = 1;
+  total_size += 1UL * this->_internal_kvpairs_size();
+  for (const auto& msg : this->_internal_kvpairs()) {
+    total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void WriteBatchRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<WriteBatchRequest*>(&to_msg);
+  auto& from = static_cast<const WriteBatchRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:dlsm.WriteBatchRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_kvpairs()->MergeFrom(
+      from._internal_kvpairs());
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void WriteBatchRequest::CopyFrom(const WriteBatchRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:dlsm.WriteBatchRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool WriteBatchRequest::IsInitialized() const {
+  return true;
+}
+
+void WriteBatchRequest::InternalSwap(WriteBatchRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.kvpairs_.InternalSwap(&other->_impl_.kvpairs_);
+}
+
+::google::protobuf::Metadata WriteBatchRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(&descriptor_table_dlsm_2eproto_getter,
+                                   &descriptor_table_dlsm_2eproto_once,
+                                   file_level_metadata_dlsm_2eproto[3]);
+}
+// ===================================================================
+
+class WriteBatchResponse::_Internal {
+ public:
+};
+
+WriteBatchResponse::WriteBatchResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:dlsm.WriteBatchResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE WriteBatchResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : message_(arena, from.message_),
+        _cached_size_{0} {}
+
+WriteBatchResponse::WriteBatchResponse(
+    ::google::protobuf::Arena* arena,
+    const WriteBatchResponse& from)
+    : ::google::protobuf::Message(arena) {
+  WriteBatchResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.code_ = from._impl_.code_;
+
+  // @@protoc_insertion_point(copy_constructor:dlsm.WriteBatchResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE WriteBatchResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : message_(arena),
+        _cached_size_{0} {}
+
+inline void WriteBatchResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.code_ = {};
+}
+WriteBatchResponse::~WriteBatchResponse() {
+  // @@protoc_insertion_point(destructor:dlsm.WriteBatchResponse)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void WriteBatchResponse::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.message_.Destroy();
+  _impl_.~Impl_();
+}
+
+const ::google::protobuf::MessageLite::ClassData*
+WriteBatchResponse::GetClassData() const {
+  PROTOBUF_CONSTINIT static const ::google::protobuf::MessageLite::
+      ClassDataFull _data_ = {
+          {
+              nullptr,  // OnDemandRegisterArenaDtor
+              PROTOBUF_FIELD_OFFSET(WriteBatchResponse, _impl_._cached_size_),
+              false,
+          },
+          &WriteBatchResponse::MergeImpl,
+          &WriteBatchResponse::kDescriptorMethods,
+      };
+  return &_data_;
+}
+PROTOBUF_NOINLINE void WriteBatchResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:dlsm.WriteBatchResponse)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.message_.ClearToEmpty();
+  _impl_.code_ = 0u;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* WriteBatchResponse::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 39, 2> WriteBatchResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_WriteBatchResponse_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::dlsm::WriteBatchResponse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string message = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(WriteBatchResponse, _impl_.message_)}},
+    // uint32 code = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(WriteBatchResponse, _impl_.code_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(WriteBatchResponse, _impl_.code_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // uint32 code = 1;
+    {PROTOBUF_FIELD_OFFSET(WriteBatchResponse, _impl_.code_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
+    // string message = 2;
+    {PROTOBUF_FIELD_OFFSET(WriteBatchResponse, _impl_.message_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\27\0\7\0\0\0\0\0"
+    "dlsm.WriteBatchResponse"
+    "message"
+  }},
+};
+
+::uint8_t* WriteBatchResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:dlsm.WriteBatchResponse)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // uint32 code = 1;
+  if (this->_internal_code() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+        1, this->_internal_code(), target);
+  }
+
+  // string message = 2;
+  if (!this->_internal_message().empty()) {
+    const std::string& _s = this->_internal_message();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "dlsm.WriteBatchResponse.message");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:dlsm.WriteBatchResponse)
+  return target;
+}
+
+::size_t WriteBatchResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:dlsm.WriteBatchResponse)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string message = 2;
+  if (!this->_internal_message().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_message());
+  }
+
+  // uint32 code = 1;
+  if (this->_internal_code() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+        this->_internal_code());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+
+void WriteBatchResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<WriteBatchResponse*>(&to_msg);
+  auto& from = static_cast<const WriteBatchResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:dlsm.WriteBatchResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_message().empty()) {
+    _this->_internal_set_message(from._internal_message());
+  }
+  if (from._internal_code() != 0) {
+    _this->_impl_.code_ = from._impl_.code_;
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void WriteBatchResponse::CopyFrom(const WriteBatchResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:dlsm.WriteBatchResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool WriteBatchResponse::IsInitialized() const {
+  return true;
+}
+
+void WriteBatchResponse::InternalSwap(WriteBatchResponse* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
+        swap(_impl_.code_, other->_impl_.code_);
+}
+
+::google::protobuf::Metadata WriteBatchResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(&descriptor_table_dlsm_2eproto_getter,
+                                   &descriptor_table_dlsm_2eproto_once,
+                                   file_level_metadata_dlsm_2eproto[4]);
 }
 // ===================================================================
 
@@ -939,7 +1668,7 @@ void GetKeyRequest::InternalSwap(GetKeyRequest* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata GetKeyRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(&descriptor_table_dlsm_2eproto_getter,
                                    &descriptor_table_dlsm_2eproto_once,
-                                   file_level_metadata_dlsm_2eproto[2]);
+                                   file_level_metadata_dlsm_2eproto[5]);
 }
 // ===================================================================
 
@@ -1030,7 +1759,7 @@ const char* GetKeyResponse::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 0, 40, 2> GetKeyResponse::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 0, 35, 2> GetKeyResponse::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -1048,8 +1777,8 @@ const ::_pbi::TcParseTable<2, 3, 0, 40, 2> GetKeyResponse::_table_ = {
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
-    // string value = 1;
-    {::_pbi::TcParser::FastUS1,
+    // bytes value = 1;
+    {::_pbi::TcParser::FastBS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(GetKeyResponse, _impl_.value_)}},
     // uint32 code = 2;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GetKeyResponse, _impl_.code_), 63>(),
@@ -1060,9 +1789,9 @@ const ::_pbi::TcParseTable<2, 3, 0, 40, 2> GetKeyResponse::_table_ = {
   }}, {{
     65535, 65535
   }}, {{
-    // string value = 1;
+    // bytes value = 1;
     {PROTOBUF_FIELD_OFFSET(GetKeyResponse, _impl_.value_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
     // uint32 code = 2;
     {PROTOBUF_FIELD_OFFSET(GetKeyResponse, _impl_.code_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
@@ -1072,9 +1801,8 @@ const ::_pbi::TcParseTable<2, 3, 0, 40, 2> GetKeyResponse::_table_ = {
   }},
   // no aux_entries
   {{
-    "\23\5\0\7\0\0\0\0"
+    "\23\0\0\7\0\0\0\0"
     "dlsm.GetKeyResponse"
-    "value"
     "message"
   }},
 };
@@ -1086,12 +1814,10 @@ const ::_pbi::TcParseTable<2, 3, 0, 40, 2> GetKeyResponse::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // string value = 1;
+  // bytes value = 1;
   if (!this->_internal_value().empty()) {
     const std::string& _s = this->_internal_value();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "dlsm.GetKeyResponse.value");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
+    target = stream->WriteBytesMaybeAliased(1, _s, target);
   }
 
   // uint32 code = 2;
@@ -1126,9 +1852,9 @@ const ::_pbi::TcParseTable<2, 3, 0, 40, 2> GetKeyResponse::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string value = 1;
+  // bytes value = 1;
   if (!this->_internal_value().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_value());
   }
 
@@ -1192,7 +1918,7 @@ void GetKeyResponse::InternalSwap(GetKeyResponse* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata GetKeyResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(&descriptor_table_dlsm_2eproto_getter,
                                    &descriptor_table_dlsm_2eproto_once,
-                                   file_level_metadata_dlsm_2eproto[3]);
+                                   file_level_metadata_dlsm_2eproto[6]);
 }
 // ===================================================================
 
@@ -1389,7 +2115,7 @@ void DeleteKeyRequest::InternalSwap(DeleteKeyRequest* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata DeleteKeyRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(&descriptor_table_dlsm_2eproto_getter,
                                    &descriptor_table_dlsm_2eproto_once,
-                                   file_level_metadata_dlsm_2eproto[4]);
+                                   file_level_metadata_dlsm_2eproto[7]);
 }
 // ===================================================================
 
@@ -1612,7 +2338,7 @@ void DeleteKeyResponse::InternalSwap(DeleteKeyResponse* PROTOBUF_RESTRICT other)
 ::google::protobuf::Metadata DeleteKeyResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(&descriptor_table_dlsm_2eproto_getter,
                                    &descriptor_table_dlsm_2eproto_once,
-                                   file_level_metadata_dlsm_2eproto[5]);
+                                   file_level_metadata_dlsm_2eproto[8]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace dlsm

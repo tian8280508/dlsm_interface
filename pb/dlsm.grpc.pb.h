@@ -35,12 +35,19 @@ class dLSMService final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status SetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::dlsm::SetKeyResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::SetKeyResponse>> AsyncSetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) {
+    virtual ::grpc::Status SetKey(::grpc::ClientContext* context, const ::dlsm::SetKeyRequest& request, ::dlsm::SetKeyResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::SetKeyResponse>> AsyncSetKey(::grpc::ClientContext* context, const ::dlsm::SetKeyRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::SetKeyResponse>>(AsyncSetKeyRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::SetKeyResponse>> PrepareAsyncSetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::SetKeyResponse>> PrepareAsyncSetKey(::grpc::ClientContext* context, const ::dlsm::SetKeyRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::SetKeyResponse>>(PrepareAsyncSetKeyRaw(context, request, cq));
+    }
+    virtual ::grpc::Status WriteBatch(::grpc::ClientContext* context, const ::dlsm::WriteBatchRequest& request, ::dlsm::WriteBatchResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::WriteBatchResponse>> AsyncWriteBatch(::grpc::ClientContext* context, const ::dlsm::WriteBatchRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::WriteBatchResponse>>(AsyncWriteBatchRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::WriteBatchResponse>> PrepareAsyncWriteBatch(::grpc::ClientContext* context, const ::dlsm::WriteBatchRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::WriteBatchResponse>>(PrepareAsyncWriteBatchRaw(context, request, cq));
     }
     virtual ::grpc::Status GetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::dlsm::GetKeyResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::GetKeyResponse>> AsyncGetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) {
@@ -49,43 +56,43 @@ class dLSMService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::GetKeyResponse>> PrepareAsyncGetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::GetKeyResponse>>(PrepareAsyncGetKeyRaw(context, request, cq));
     }
-    virtual ::grpc::Status DeleteKey(::grpc::ClientContext* context, const ::dlsm::DeleteKeyRequest& request, ::dlsm::DeleteKeyResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::DeleteKeyResponse>> AsyncDeleteKey(::grpc::ClientContext* context, const ::dlsm::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::DeleteKeyResponse>>(AsyncDeleteKeyRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::DeleteKeyResponse>> PrepareAsyncDeleteKey(::grpc::ClientContext* context, const ::dlsm::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::DeleteKeyResponse>>(PrepareAsyncDeleteKeyRaw(context, request, cq));
-    }
     class async_interface {
      public:
       virtual ~async_interface() {}
-      virtual void SetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest* request, ::dlsm::SetKeyResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void SetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest* request, ::dlsm::SetKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void SetKey(::grpc::ClientContext* context, const ::dlsm::SetKeyRequest* request, ::dlsm::SetKeyResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetKey(::grpc::ClientContext* context, const ::dlsm::SetKeyRequest* request, ::dlsm::SetKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void WriteBatch(::grpc::ClientContext* context, const ::dlsm::WriteBatchRequest* request, ::dlsm::WriteBatchResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void WriteBatch(::grpc::ClientContext* context, const ::dlsm::WriteBatchRequest* request, ::dlsm::WriteBatchResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest* request, ::dlsm::GetKeyResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest* request, ::dlsm::GetKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void DeleteKey(::grpc::ClientContext* context, const ::dlsm::DeleteKeyRequest* request, ::dlsm::DeleteKeyResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void DeleteKey(::grpc::ClientContext* context, const ::dlsm::DeleteKeyRequest* request, ::dlsm::DeleteKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::SetKeyResponse>* AsyncSetKeyRaw(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::SetKeyResponse>* PrepareAsyncSetKeyRaw(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::SetKeyResponse>* AsyncSetKeyRaw(::grpc::ClientContext* context, const ::dlsm::SetKeyRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::SetKeyResponse>* PrepareAsyncSetKeyRaw(::grpc::ClientContext* context, const ::dlsm::SetKeyRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::WriteBatchResponse>* AsyncWriteBatchRaw(::grpc::ClientContext* context, const ::dlsm::WriteBatchRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::WriteBatchResponse>* PrepareAsyncWriteBatchRaw(::grpc::ClientContext* context, const ::dlsm::WriteBatchRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::GetKeyResponse>* AsyncGetKeyRaw(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::GetKeyResponse>* PrepareAsyncGetKeyRaw(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::DeleteKeyResponse>* AsyncDeleteKeyRaw(::grpc::ClientContext* context, const ::dlsm::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::dlsm::DeleteKeyResponse>* PrepareAsyncDeleteKeyRaw(::grpc::ClientContext* context, const ::dlsm::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status SetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::dlsm::SetKeyResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dlsm::SetKeyResponse>> AsyncSetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) {
+    ::grpc::Status SetKey(::grpc::ClientContext* context, const ::dlsm::SetKeyRequest& request, ::dlsm::SetKeyResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dlsm::SetKeyResponse>> AsyncSetKey(::grpc::ClientContext* context, const ::dlsm::SetKeyRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dlsm::SetKeyResponse>>(AsyncSetKeyRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dlsm::SetKeyResponse>> PrepareAsyncSetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) {
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dlsm::SetKeyResponse>> PrepareAsyncSetKey(::grpc::ClientContext* context, const ::dlsm::SetKeyRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dlsm::SetKeyResponse>>(PrepareAsyncSetKeyRaw(context, request, cq));
+    }
+    ::grpc::Status WriteBatch(::grpc::ClientContext* context, const ::dlsm::WriteBatchRequest& request, ::dlsm::WriteBatchResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dlsm::WriteBatchResponse>> AsyncWriteBatch(::grpc::ClientContext* context, const ::dlsm::WriteBatchRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dlsm::WriteBatchResponse>>(AsyncWriteBatchRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dlsm::WriteBatchResponse>> PrepareAsyncWriteBatch(::grpc::ClientContext* context, const ::dlsm::WriteBatchRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dlsm::WriteBatchResponse>>(PrepareAsyncWriteBatchRaw(context, request, cq));
     }
     ::grpc::Status GetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::dlsm::GetKeyResponse* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dlsm::GetKeyResponse>> AsyncGetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) {
@@ -94,22 +101,15 @@ class dLSMService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dlsm::GetKeyResponse>> PrepareAsyncGetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dlsm::GetKeyResponse>>(PrepareAsyncGetKeyRaw(context, request, cq));
     }
-    ::grpc::Status DeleteKey(::grpc::ClientContext* context, const ::dlsm::DeleteKeyRequest& request, ::dlsm::DeleteKeyResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dlsm::DeleteKeyResponse>> AsyncDeleteKey(::grpc::ClientContext* context, const ::dlsm::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dlsm::DeleteKeyResponse>>(AsyncDeleteKeyRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dlsm::DeleteKeyResponse>> PrepareAsyncDeleteKey(::grpc::ClientContext* context, const ::dlsm::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::dlsm::DeleteKeyResponse>>(PrepareAsyncDeleteKeyRaw(context, request, cq));
-    }
     class async final :
       public StubInterface::async_interface {
      public:
-      void SetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest* request, ::dlsm::SetKeyResponse* response, std::function<void(::grpc::Status)>) override;
-      void SetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest* request, ::dlsm::SetKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetKey(::grpc::ClientContext* context, const ::dlsm::SetKeyRequest* request, ::dlsm::SetKeyResponse* response, std::function<void(::grpc::Status)>) override;
+      void SetKey(::grpc::ClientContext* context, const ::dlsm::SetKeyRequest* request, ::dlsm::SetKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void WriteBatch(::grpc::ClientContext* context, const ::dlsm::WriteBatchRequest* request, ::dlsm::WriteBatchResponse* response, std::function<void(::grpc::Status)>) override;
+      void WriteBatch(::grpc::ClientContext* context, const ::dlsm::WriteBatchRequest* request, ::dlsm::WriteBatchResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest* request, ::dlsm::GetKeyResponse* response, std::function<void(::grpc::Status)>) override;
       void GetKey(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest* request, ::dlsm::GetKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void DeleteKey(::grpc::ClientContext* context, const ::dlsm::DeleteKeyRequest* request, ::dlsm::DeleteKeyResponse* response, std::function<void(::grpc::Status)>) override;
-      void DeleteKey(::grpc::ClientContext* context, const ::dlsm::DeleteKeyRequest* request, ::dlsm::DeleteKeyResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -121,15 +121,15 @@ class dLSMService final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::dlsm::SetKeyResponse>* AsyncSetKeyRaw(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::dlsm::SetKeyResponse>* PrepareAsyncSetKeyRaw(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::dlsm::SetKeyResponse>* AsyncSetKeyRaw(::grpc::ClientContext* context, const ::dlsm::SetKeyRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::dlsm::SetKeyResponse>* PrepareAsyncSetKeyRaw(::grpc::ClientContext* context, const ::dlsm::SetKeyRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::dlsm::WriteBatchResponse>* AsyncWriteBatchRaw(::grpc::ClientContext* context, const ::dlsm::WriteBatchRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::dlsm::WriteBatchResponse>* PrepareAsyncWriteBatchRaw(::grpc::ClientContext* context, const ::dlsm::WriteBatchRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::dlsm::GetKeyResponse>* AsyncGetKeyRaw(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::dlsm::GetKeyResponse>* PrepareAsyncGetKeyRaw(::grpc::ClientContext* context, const ::dlsm::GetKeyRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::dlsm::DeleteKeyResponse>* AsyncDeleteKeyRaw(::grpc::ClientContext* context, const ::dlsm::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::dlsm::DeleteKeyResponse>* PrepareAsyncDeleteKeyRaw(::grpc::ClientContext* context, const ::dlsm::DeleteKeyRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_SetKey_;
+    const ::grpc::internal::RpcMethod rpcmethod_WriteBatch_;
     const ::grpc::internal::RpcMethod rpcmethod_GetKey_;
-    const ::grpc::internal::RpcMethod rpcmethod_DeleteKey_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -137,9 +137,9 @@ class dLSMService final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status SetKey(::grpc::ServerContext* context, const ::dlsm::GetKeyRequest* request, ::dlsm::SetKeyResponse* response);
+    virtual ::grpc::Status SetKey(::grpc::ServerContext* context, const ::dlsm::SetKeyRequest* request, ::dlsm::SetKeyResponse* response);
+    virtual ::grpc::Status WriteBatch(::grpc::ServerContext* context, const ::dlsm::WriteBatchRequest* request, ::dlsm::WriteBatchResponse* response);
     virtual ::grpc::Status GetKey(::grpc::ServerContext* context, const ::dlsm::GetKeyRequest* request, ::dlsm::GetKeyResponse* response);
-    virtual ::grpc::Status DeleteKey(::grpc::ServerContext* context, const ::dlsm::DeleteKeyRequest* request, ::dlsm::DeleteKeyResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_SetKey : public BaseClass {
@@ -153,12 +153,32 @@ class dLSMService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SetKey(::grpc::ServerContext* /*context*/, const ::dlsm::GetKeyRequest* /*request*/, ::dlsm::SetKeyResponse* /*response*/) override {
+    ::grpc::Status SetKey(::grpc::ServerContext* /*context*/, const ::dlsm::SetKeyRequest* /*request*/, ::dlsm::SetKeyResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestSetKey(::grpc::ServerContext* context, ::dlsm::GetKeyRequest* request, ::grpc::ServerAsyncResponseWriter< ::dlsm::SetKeyResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestSetKey(::grpc::ServerContext* context, ::dlsm::SetKeyRequest* request, ::grpc::ServerAsyncResponseWriter< ::dlsm::SetKeyResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_WriteBatch : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_WriteBatch() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_WriteBatch() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status WriteBatch(::grpc::ServerContext* /*context*/, const ::dlsm::WriteBatchRequest* /*request*/, ::dlsm::WriteBatchResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestWriteBatch(::grpc::ServerContext* context, ::dlsm::WriteBatchRequest* request, ::grpc::ServerAsyncResponseWriter< ::dlsm::WriteBatchResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -167,7 +187,7 @@ class dLSMService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_GetKey() {
-      ::grpc::Service::MarkMethodAsync(1);
+      ::grpc::Service::MarkMethodAsync(2);
     }
     ~WithAsyncMethod_GetKey() override {
       BaseClassMustBeDerivedFromService(this);
@@ -178,30 +198,10 @@ class dLSMService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetKey(::grpc::ServerContext* context, ::dlsm::GetKeyRequest* request, ::grpc::ServerAsyncResponseWriter< ::dlsm::GetKeyResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_DeleteKey : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_DeleteKey() {
-      ::grpc::Service::MarkMethodAsync(2);
-    }
-    ~WithAsyncMethod_DeleteKey() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status DeleteKey(::grpc::ServerContext* /*context*/, const ::dlsm::DeleteKeyRequest* /*request*/, ::dlsm::DeleteKeyResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestDeleteKey(::grpc::ServerContext* context, ::dlsm::DeleteKeyRequest* request, ::grpc::ServerAsyncResponseWriter< ::dlsm::DeleteKeyResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_SetKey<WithAsyncMethod_GetKey<WithAsyncMethod_DeleteKey<Service > > > AsyncService;
+  typedef WithAsyncMethod_SetKey<WithAsyncMethod_WriteBatch<WithAsyncMethod_GetKey<Service > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_SetKey : public BaseClass {
    private:
@@ -209,25 +209,52 @@ class dLSMService final {
    public:
     WithCallbackMethod_SetKey() {
       ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::dlsm::GetKeyRequest, ::dlsm::SetKeyResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::dlsm::SetKeyRequest, ::dlsm::SetKeyResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::dlsm::GetKeyRequest* request, ::dlsm::SetKeyResponse* response) { return this->SetKey(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::dlsm::SetKeyRequest* request, ::dlsm::SetKeyResponse* response) { return this->SetKey(context, request, response); }));}
     void SetMessageAllocatorFor_SetKey(
-        ::grpc::MessageAllocator< ::dlsm::GetKeyRequest, ::dlsm::SetKeyResponse>* allocator) {
+        ::grpc::MessageAllocator< ::dlsm::SetKeyRequest, ::dlsm::SetKeyResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::dlsm::GetKeyRequest, ::dlsm::SetKeyResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::dlsm::SetKeyRequest, ::dlsm::SetKeyResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_SetKey() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SetKey(::grpc::ServerContext* /*context*/, const ::dlsm::GetKeyRequest* /*request*/, ::dlsm::SetKeyResponse* /*response*/) override {
+    ::grpc::Status SetKey(::grpc::ServerContext* /*context*/, const ::dlsm::SetKeyRequest* /*request*/, ::dlsm::SetKeyResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* SetKey(
-      ::grpc::CallbackServerContext* /*context*/, const ::dlsm::GetKeyRequest* /*request*/, ::dlsm::SetKeyResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::dlsm::SetKeyRequest* /*request*/, ::dlsm::SetKeyResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_WriteBatch : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_WriteBatch() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::dlsm::WriteBatchRequest, ::dlsm::WriteBatchResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::dlsm::WriteBatchRequest* request, ::dlsm::WriteBatchResponse* response) { return this->WriteBatch(context, request, response); }));}
+    void SetMessageAllocatorFor_WriteBatch(
+        ::grpc::MessageAllocator< ::dlsm::WriteBatchRequest, ::dlsm::WriteBatchResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::dlsm::WriteBatchRequest, ::dlsm::WriteBatchResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_WriteBatch() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status WriteBatch(::grpc::ServerContext* /*context*/, const ::dlsm::WriteBatchRequest* /*request*/, ::dlsm::WriteBatchResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* WriteBatch(
+      ::grpc::CallbackServerContext* /*context*/, const ::dlsm::WriteBatchRequest* /*request*/, ::dlsm::WriteBatchResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_GetKey : public BaseClass {
@@ -235,13 +262,13 @@ class dLSMService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_GetKey() {
-      ::grpc::Service::MarkMethodCallback(1,
+      ::grpc::Service::MarkMethodCallback(2,
           new ::grpc::internal::CallbackUnaryHandler< ::dlsm::GetKeyRequest, ::dlsm::GetKeyResponse>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::dlsm::GetKeyRequest* request, ::dlsm::GetKeyResponse* response) { return this->GetKey(context, request, response); }));}
     void SetMessageAllocatorFor_GetKey(
         ::grpc::MessageAllocator< ::dlsm::GetKeyRequest, ::dlsm::GetKeyResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::dlsm::GetKeyRequest, ::dlsm::GetKeyResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -256,34 +283,7 @@ class dLSMService final {
     virtual ::grpc::ServerUnaryReactor* GetKey(
       ::grpc::CallbackServerContext* /*context*/, const ::dlsm::GetKeyRequest* /*request*/, ::dlsm::GetKeyResponse* /*response*/)  { return nullptr; }
   };
-  template <class BaseClass>
-  class WithCallbackMethod_DeleteKey : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_DeleteKey() {
-      ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::dlsm::DeleteKeyRequest, ::dlsm::DeleteKeyResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::dlsm::DeleteKeyRequest* request, ::dlsm::DeleteKeyResponse* response) { return this->DeleteKey(context, request, response); }));}
-    void SetMessageAllocatorFor_DeleteKey(
-        ::grpc::MessageAllocator< ::dlsm::DeleteKeyRequest, ::dlsm::DeleteKeyResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::dlsm::DeleteKeyRequest, ::dlsm::DeleteKeyResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_DeleteKey() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status DeleteKey(::grpc::ServerContext* /*context*/, const ::dlsm::DeleteKeyRequest* /*request*/, ::dlsm::DeleteKeyResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* DeleteKey(
-      ::grpc::CallbackServerContext* /*context*/, const ::dlsm::DeleteKeyRequest* /*request*/, ::dlsm::DeleteKeyResponse* /*response*/)  { return nullptr; }
-  };
-  typedef WithCallbackMethod_SetKey<WithCallbackMethod_GetKey<WithCallbackMethod_DeleteKey<Service > > > CallbackService;
+  typedef WithCallbackMethod_SetKey<WithCallbackMethod_WriteBatch<WithCallbackMethod_GetKey<Service > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_SetKey : public BaseClass {
@@ -297,7 +297,24 @@ class dLSMService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SetKey(::grpc::ServerContext* /*context*/, const ::dlsm::GetKeyRequest* /*request*/, ::dlsm::SetKeyResponse* /*response*/) override {
+    ::grpc::Status SetKey(::grpc::ServerContext* /*context*/, const ::dlsm::SetKeyRequest* /*request*/, ::dlsm::SetKeyResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_WriteBatch : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_WriteBatch() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_WriteBatch() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status WriteBatch(::grpc::ServerContext* /*context*/, const ::dlsm::WriteBatchRequest* /*request*/, ::dlsm::WriteBatchResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -308,30 +325,13 @@ class dLSMService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_GetKey() {
-      ::grpc::Service::MarkMethodGeneric(1);
+      ::grpc::Service::MarkMethodGeneric(2);
     }
     ~WithGenericMethod_GetKey() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
     ::grpc::Status GetKey(::grpc::ServerContext* /*context*/, const ::dlsm::GetKeyRequest* /*request*/, ::dlsm::GetKeyResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_DeleteKey : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_DeleteKey() {
-      ::grpc::Service::MarkMethodGeneric(2);
-    }
-    ~WithGenericMethod_DeleteKey() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status DeleteKey(::grpc::ServerContext* /*context*/, const ::dlsm::DeleteKeyRequest* /*request*/, ::dlsm::DeleteKeyResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -348,7 +348,7 @@ class dLSMService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SetKey(::grpc::ServerContext* /*context*/, const ::dlsm::GetKeyRequest* /*request*/, ::dlsm::SetKeyResponse* /*response*/) override {
+    ::grpc::Status SetKey(::grpc::ServerContext* /*context*/, const ::dlsm::SetKeyRequest* /*request*/, ::dlsm::SetKeyResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -357,12 +357,32 @@ class dLSMService final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_WriteBatch : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_WriteBatch() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_WriteBatch() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status WriteBatch(::grpc::ServerContext* /*context*/, const ::dlsm::WriteBatchRequest* /*request*/, ::dlsm::WriteBatchResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestWriteBatch(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_GetKey : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_GetKey() {
-      ::grpc::Service::MarkMethodRaw(1);
+      ::grpc::Service::MarkMethodRaw(2);
     }
     ~WithRawMethod_GetKey() override {
       BaseClassMustBeDerivedFromService(this);
@@ -373,26 +393,6 @@ class dLSMService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestGetKey(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_DeleteKey : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_DeleteKey() {
-      ::grpc::Service::MarkMethodRaw(2);
-    }
-    ~WithRawMethod_DeleteKey() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status DeleteKey(::grpc::ServerContext* /*context*/, const ::dlsm::DeleteKeyRequest* /*request*/, ::dlsm::DeleteKeyResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestDeleteKey(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -411,11 +411,33 @@ class dLSMService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SetKey(::grpc::ServerContext* /*context*/, const ::dlsm::GetKeyRequest* /*request*/, ::dlsm::SetKeyResponse* /*response*/) override {
+    ::grpc::Status SetKey(::grpc::ServerContext* /*context*/, const ::dlsm::SetKeyRequest* /*request*/, ::dlsm::SetKeyResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* SetKey(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_WriteBatch : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_WriteBatch() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->WriteBatch(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_WriteBatch() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status WriteBatch(::grpc::ServerContext* /*context*/, const ::dlsm::WriteBatchRequest* /*request*/, ::dlsm::WriteBatchResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* WriteBatch(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -424,7 +446,7 @@ class dLSMService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_GetKey() {
-      ::grpc::Service::MarkMethodRawCallback(1,
+      ::grpc::Service::MarkMethodRawCallback(2,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetKey(context, request, response); }));
@@ -441,28 +463,6 @@ class dLSMService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_DeleteKey : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_DeleteKey() {
-      ::grpc::Service::MarkMethodRawCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DeleteKey(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_DeleteKey() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status DeleteKey(::grpc::ServerContext* /*context*/, const ::dlsm::DeleteKeyRequest* /*request*/, ::dlsm::DeleteKeyResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* DeleteKey(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
   class WithStreamedUnaryMethod_SetKey : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -470,10 +470,10 @@ class dLSMService final {
     WithStreamedUnaryMethod_SetKey() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::dlsm::GetKeyRequest, ::dlsm::SetKeyResponse>(
+          ::dlsm::SetKeyRequest, ::dlsm::SetKeyResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::dlsm::GetKeyRequest, ::dlsm::SetKeyResponse>* streamer) {
+                     ::dlsm::SetKeyRequest, ::dlsm::SetKeyResponse>* streamer) {
                        return this->StreamedSetKey(context,
                          streamer);
                   }));
@@ -482,12 +482,39 @@ class dLSMService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status SetKey(::grpc::ServerContext* /*context*/, const ::dlsm::GetKeyRequest* /*request*/, ::dlsm::SetKeyResponse* /*response*/) override {
+    ::grpc::Status SetKey(::grpc::ServerContext* /*context*/, const ::dlsm::SetKeyRequest* /*request*/, ::dlsm::SetKeyResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedSetKey(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::dlsm::GetKeyRequest,::dlsm::SetKeyResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedSetKey(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::dlsm::SetKeyRequest,::dlsm::SetKeyResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_WriteBatch : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_WriteBatch() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::dlsm::WriteBatchRequest, ::dlsm::WriteBatchResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::dlsm::WriteBatchRequest, ::dlsm::WriteBatchResponse>* streamer) {
+                       return this->StreamedWriteBatch(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_WriteBatch() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status WriteBatch(::grpc::ServerContext* /*context*/, const ::dlsm::WriteBatchRequest* /*request*/, ::dlsm::WriteBatchResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedWriteBatch(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::dlsm::WriteBatchRequest,::dlsm::WriteBatchResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_GetKey : public BaseClass {
@@ -495,7 +522,7 @@ class dLSMService final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_GetKey() {
-      ::grpc::Service::MarkMethodStreamed(1,
+      ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
           ::dlsm::GetKeyRequest, ::dlsm::GetKeyResponse>(
             [this](::grpc::ServerContext* context,
@@ -516,36 +543,9 @@ class dLSMService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetKey(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::dlsm::GetKeyRequest,::dlsm::GetKeyResponse>* server_unary_streamer) = 0;
   };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_DeleteKey : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_DeleteKey() {
-      ::grpc::Service::MarkMethodStreamed(2,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::dlsm::DeleteKeyRequest, ::dlsm::DeleteKeyResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::dlsm::DeleteKeyRequest, ::dlsm::DeleteKeyResponse>* streamer) {
-                       return this->StreamedDeleteKey(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_DeleteKey() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status DeleteKey(::grpc::ServerContext* /*context*/, const ::dlsm::DeleteKeyRequest* /*request*/, ::dlsm::DeleteKeyResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedDeleteKey(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::dlsm::DeleteKeyRequest,::dlsm::DeleteKeyResponse>* server_unary_streamer) = 0;
-  };
-  typedef WithStreamedUnaryMethod_SetKey<WithStreamedUnaryMethod_GetKey<WithStreamedUnaryMethod_DeleteKey<Service > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_SetKey<WithStreamedUnaryMethod_WriteBatch<WithStreamedUnaryMethod_GetKey<Service > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_SetKey<WithStreamedUnaryMethod_GetKey<WithStreamedUnaryMethod_DeleteKey<Service > > > StreamedService;
+  typedef WithStreamedUnaryMethod_SetKey<WithStreamedUnaryMethod_WriteBatch<WithStreamedUnaryMethod_GetKey<Service > > > StreamedService;
 };
 
 }  // namespace dlsm

@@ -16,6 +16,10 @@ public:
                       const dlsm::GetKeyRequest *request,
                       dlsm::GetKeyResponse *response) override;
 
+  grpc::Status WriteBatch(grpc::ServerContext *context,
+                          const dlsm::WriteBatchRequest *request,
+                          dlsm::WriteBatchResponse *response) override;
+
 private:
   dlsmdb::db *db_;
 };

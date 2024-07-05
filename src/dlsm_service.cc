@@ -1,4 +1,5 @@
 #include "dlsm_service.h"
+#include "dlsm.pb.h"
 #include <cstdlib>
 #include <grpcpp/grpcpp.h>
 #include <memory>
@@ -11,6 +12,8 @@ using dlsm::GetKeyRequest;
 using dlsm::GetKeyResponse;
 using dlsm::SetKeyRequest;
 using dlsm::SetKeyResponse;
+using dlsm::WriteBatchRequest;
+using dlsm::WriteBatchResponse;
 using grpc::Server;
 using grpc::ServerBuilder;
 using grpc::ServerContext;
@@ -44,12 +47,20 @@ Status dLSMServiceImpl::GetKey(ServerContext *context,
   return Status::OK;
 }
 
+Status dLSMServiceImpl::WriteBatch(ServerContext *context,
+                                   const WriteBatchRequest *request,
+                                   WriteBatchResponse *response) {
+  // TODO implement this
+  return Status::OK;
+}
+
 void RunServer(dlsmdb::db *db) {
-  std::string server_address("0.0.0.0:50051");
+  std::string server_address("unix:/var/tmp/socket"); // unix domain socket
   dLSMServiceImpl service(db);
 
   ServerBuilder builder;
-  builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
+  builder.AddListeningPort(server_address,
+                           grpc::experimental::LocalServerCredentials(UDS));
   builder.RegisterService(&service);
 
   std::unique_ptr<Server> server(builder.BuildAndStart());
