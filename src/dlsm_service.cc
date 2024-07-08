@@ -24,9 +24,14 @@ Status dLSMServiceImpl::SetKey(ServerContext *context,
                                SetKeyResponse *response) {
   const std::string &key = request->key();
   const std::string &val = request->value();
-  db_->setKey(key, val);
-  response->set_code(0); // 0 means success
-  response->set_message("Success");
+  int code = db_->setKey(key, val);
+  if (code == 0) {
+    response->set_code(0); // 0 means success
+    response->set_message("Success");
+  } else {
+    response->set_code(1); // 1 means error
+    response->set_message("Set failed");
+  }
   return Status::OK;
 }
 
@@ -50,7 +55,38 @@ Status dLSMServiceImpl::GetKey(ServerContext *context,
 Status dLSMServiceImpl::WriteBatch(ServerContext *context,
                                    const WriteBatchRequest *request,
                                    WriteBatchResponse *response) {
-  // TODO implement this
+  auto kvpairs = request->kvpairs();
+  std::string key_storage;
+  std::string value_storage;
+
+  TimberSaw::Slice key_list(key_storage);
+  TimberSaw::Slice value_list(value_storage);
+  for (auto &item : kvpairs) {
+    // 提取键和值
+    const std::string &key = item.key();
+    const std::string &value = item.value();
+
+    // 将键拼接到 key_storage
+    key_storage.append(key);
+
+    // 将值拼接到 value_storage
+    value_storage.append(value);
+
+    // 更新 Slices 的引用
+    key_list.Reset(key_storage.data(), key_storage.size());
+    value_list.Reset(value_storage.data(), value_storage.size());
+  }
+  // printf("keys: %s", key_list.ToString().c_str());
+  // printf("vals: %s", value_list.ToString().c_str());
+  // return Status::OK;
+  int code = db_->writeBatch(key_list, value_list);
+  if (code == 0) {
+    response->set_code(0); // 0 means success
+    response->set_message("Success");
+  } else {
+    response->set_code(1); // 1 means error
+    response->set_message("WriteBatch failed");
+  }
   return Status::OK;
 }
 

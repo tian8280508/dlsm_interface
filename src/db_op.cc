@@ -1,4 +1,8 @@
 #include "db_op.h"
+#include "TimberSaw/db.h"
+#include "TimberSaw/options.h"
+#include "TimberSaw/slice.h"
+#include "TimberSaw/status.h"
 #include <cstdio>
 #include <mutex>
 #include <stdexcept>
@@ -66,9 +70,7 @@ int db::setKey(const std::string &key, const std::string &value) {
   }
   TimberSaw::WriteOptions write_options;
   TimberSaw::Status status = db_->Put(write_options, key, value);
-  if (status.ok()) {
-    printf("Set operation successful\n");
-  } else {
+  if (!status.ok()) {
     printf("Set operation failed: %s\n", status.ToString().c_str());
   }
   return status.ok() ? 0 : -1;
@@ -81,11 +83,31 @@ int db::getKey(const std::string &key, std::string &value) {
   }
   TimberSaw::ReadOptions read_options;
   TimberSaw::Status status = db_->Get(read_options, key, &value);
-  if (status.ok()) {
-    printf("Get success, value: %s\n", value.c_str());
-  } else {
-    printf("Get failed: %s\n", status.ToString().c_str());
+  if (!status.ok()) {
+    // printf("Get failed: %s\n", status.ToString().c_str());
   }
+  return status.ok() ? 0 : -1;
+}
+
+int db::writeBatch(TimberSaw::Slice key_list, TimberSaw::Slice value_list) {
+  if (!db_) {
+    fprintf(stderr, "WriteBatch db hasn't been initialized.");
+    return -1;
+  }
+  TimberSaw::WriteOptions writebatch_options;
+  TimberSaw::Status status;
+  status = db_->Put(writebatch_options, key_list, value_list);
+  if (!status.ok()) {
+    printf("writeBatch failed: %s\n", status.ToString().c_str());
+  }
+  // for (const auto &kv : kvpairs) {
+  //   TimberSaw::Slice key(kv.key());
+  //   TimberSaw::Slice value(kv.value());
+  //   status = db_->Put(writebatch_options, key, value);
+  //   if (!status.ok()) {
+  //     printf("WriteBatch failed: %s\n", status.ToString().c_str());
+  //   }
+  // }
   return status.ok() ? 0 : -1;
 }
 

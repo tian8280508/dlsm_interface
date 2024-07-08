@@ -3,6 +3,7 @@
 #define FUCK_RDMA
 
 #include "TimberSaw/db.h"
+#include "dlsm.pb.h"
 #include <string>
 
 namespace dlsmdb {
@@ -22,6 +23,7 @@ public:
   int closeDB();
   int setKey(const std::string &key, const std::string &value);
   int getKey(const std::string &key, std::string &value);
+  int writeBatch(TimberSaw::Slice key_list, TimberSaw::Slice value_list);
 };
 } // namespace dlsmdb
 
