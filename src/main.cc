@@ -2,9 +2,6 @@
 #include "dlsm_service.h"
 #include <cstdio>
 
-
-
-
 //stack message
 // 在 main 函数中，调用 dlsmdb::db::getInstance() 获取数据库实例。
 // db::getInstance() 内部会调用 db 类的构造函数，而构造函数中已经完成了数据库的初始化(db::initDB)
