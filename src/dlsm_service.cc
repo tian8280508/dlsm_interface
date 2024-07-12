@@ -5,9 +5,6 @@
 #include <memory>
 #include <string>
 
-using dlsm::DeleteKeyRequest;
-using dlsm::DeleteKeyResponse;
-using dlsm::dLSMService;
 using dlsm::GetKeyRequest;
 using dlsm::GetKeyResponse;
 using dlsm::SetKeyRequest;
