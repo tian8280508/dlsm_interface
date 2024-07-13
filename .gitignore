@@ -3,6 +3,8 @@ build/
 .vscode
 .cache
 .idea
+clientout.txt
+test_data.txt
 # Prerequisites
 *.d
 

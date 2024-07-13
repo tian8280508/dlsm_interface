@@ -56,27 +56,17 @@ Status dLSMServiceImpl::WriteBatch(ServerContext *context,
   std::string key_storage;
   std::string value_storage;
 
-  TimberSaw::Slice key_list(key_storage);
-  TimberSaw::Slice value_list(value_storage);
-  for (auto &item : kvpairs) {
+  std::vector<TimberSaw::Slice> key_list;
+  std::vector<TimberSaw::Slice> val_list;
+
+  key_list.reserve(kvpairs.size());
+  val_list.reserve(kvpairs.size());
+  for (const auto &item : kvpairs) {
     // 提取键和值
-    const std::string &key = item.key();
-    const std::string &value = item.value();
-
-    // 将键拼接到 key_storage
-    key_storage.append(key);
-
-    // 将值拼接到 value_storage
-    value_storage.append(value);
-
-    // 更新 Slices 的引用
-    key_list.Reset(key_storage.data(), key_storage.size());
-    value_list.Reset(value_storage.data(), value_storage.size());
+    key_list.emplace_back(item.key().data(), item.key().size());
+    val_list.emplace_back(item.value().data(), item.value().size());
   }
-  // printf("keys: %s", key_list.ToString().c_str());
-  // printf("vals: %s", value_list.ToString().c_str());
-  // return Status::OK;
-  int code = db_->writeBatch(key_list, value_list);
+  int code = db_->writeBatch(key_list, val_list);
   if (code == 0) {
     response->set_code(0); // 0 means success
     response->set_message("Success");

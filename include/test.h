@@ -3,8 +3,10 @@
 
 #include "db_op.h"
 
-void testwritebranch(dlsmdb::db *db);
+void testwritebatch(dlsmdb::db *db);
 void testset(dlsmdb::db *db);
 void testget(dlsmdb::db *db);
+int test_shard(dlsmdb::db *db);
+std::string generate_random_string(size_t length);
 
 #endif // TEST_H

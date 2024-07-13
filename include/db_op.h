@@ -3,7 +3,6 @@
 #define FUCK_RDMA
 
 #include "TimberSaw/db.h"
-#include "dlsm.pb.h"
 #include <string>
 
 namespace dlsmdb {
@@ -11,6 +10,7 @@ class db {
 private:
   db();
   ~db();
+  static int closeDB();
   static std::mutex mtx;
   std::unique_ptr<TimberSaw::DB> db_;
   static constexpr const char *db_name = "testdb";
@@ -20,10 +20,10 @@ public:
   db(const db &) = delete;
   db &operator=(const db &) = delete;
   static db *getInstance();
-  int closeDB();
   int setKey(const std::string &key, const std::string &value);
   int getKey(const std::string &key, std::string &value);
-  int writeBatch(TimberSaw::Slice key_list, TimberSaw::Slice value_list);
+  int writeBatch(std::vector<TimberSaw::Slice> key_list,
+                 std::vector<TimberSaw::Slice> val_list);
 };
 } // namespace dlsmdb
 

@@ -3,6 +3,7 @@
 #include "TimberSaw/options.h"
 #include "TimberSaw/slice.h"
 #include "TimberSaw/status.h"
+#include "TimberSaw/write_batch.h"
 #include <cstdio>
 #include <mutex>
 #include <stdexcept>
@@ -40,10 +41,12 @@ db *db::getInstance() {
 
 int db::closeDB() {
   std::lock_guard<std::mutex> lock(mtx);
-  db_.reset();
-  delete instance;
-  instance = nullptr;
-  printf("Database '%s' closed successfully.\n", db_name);
+  if (instance) {
+    instance->db_.reset();
+    delete instance;
+    instance = nullptr;
+    printf("Database '%s' closed successfully.\n", db_name);
+  }
   return 0;
 }
 
@@ -89,17 +92,30 @@ int db::getKey(const std::string &key, std::string &value) {
   return status.ok() ? 0 : -1;
 }
 
-int db::writeBatch(TimberSaw::Slice key_list, TimberSaw::Slice value_list) {
+// dlsm 似乎并不支持batch insert，源代码中有限制 assert(kv_num == 1);
+int db::writeBatch(std::vector<TimberSaw::Slice> key_list,
+                   std::vector<TimberSaw::Slice> val_list) {
   if (!db_) {
     fprintf(stderr, "WriteBatch db hasn't been initialized.");
     return -1;
   }
-  TimberSaw::WriteOptions writebatch_options;
-  TimberSaw::Status status;
-  status = db_->Put(writebatch_options, key_list, value_list);
-  if (!status.ok()) {
-    printf("writeBatch failed: %s\n", status.ToString().c_str());
+  if (key_list.size() != val_list.size()) {
+    fprintf(stderr, "WriteBatch params size not equal.");
+    return -1;
   }
+  int size = key_list.size();
+  TimberSaw::WriteOptions writebatch_options;
+  bool hasError = false;
+  TimberSaw::Status status;
+  for (int i = 0; i < size; i++) {
+    TimberSaw::WriteBatch write_batch;
+    write_batch.Put(key_list[i], val_list[i]);
+    status = db_->Write(writebatch_options, &write_batch);
+    if (!status.ok()) {
+      printf("writeBatch failed: %s\n", status.ToString().c_str());
+    }
+  }
+
   // for (const auto &kv : kvpairs) {
   //   TimberSaw::Slice key(kv.key());
   //   TimberSaw::Slice value(kv.value());
@@ -108,7 +124,7 @@ int db::writeBatch(TimberSaw::Slice key_list, TimberSaw::Slice value_list) {
   //     printf("WriteBatch failed: %s\n", status.ToString().c_str());
   //   }
   // }
-  return status.ok() ? 0 : -1;
+  return hasError ? -1 : 0;
 }
 
 } // namespace dlsmdb

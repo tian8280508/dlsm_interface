@@ -8,10 +8,10 @@ int main() {
     fprintf(stderr, "Failed to initialize database.");
     return -1;
   }
-  testwritebranch(db);
-  testset(db);
-  testget(db);
-  RunServer(db);
-  db->closeDB();
+  // testwritebatch(db);
+  // testset(db);
+  // testget(db);
+  test_shard(db);
+  // RunServer(db);
   return 0;
 }
