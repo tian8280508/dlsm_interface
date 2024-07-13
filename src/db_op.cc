@@ -13,12 +13,13 @@ namespace dlsmdb {
 db *instance = nullptr;
 std::mutex db::mtx;
 
-db::db() {
+db::db(int node_id) {
+  printf("sssss, nodeid is is :%d", node_id);
+  TimberSaw::RDMA_Manager::node_id = node_id;
   TimberSaw::Options options;
   options.create_if_missing = true;
   TimberSaw::DB *raw_db = nullptr;
   TimberSaw::Status status = TimberSaw::DB::Open(options, db_name, &raw_db);
-
   if (!status.ok()) {
     fprintf(stderr, "Unable to open/create test database '%s'\n", db_name);
     fprintf(stderr, "%s\n", status.ToString().c_str());
@@ -31,10 +32,10 @@ db::db() {
 
 db::~db() { closeDB(); }
 
-db *db::getInstance() {
+db *db::getInstance(int node_id) {
   std::lock_guard<std::mutex> lock(mtx);
   if (instance == nullptr) {
-    instance = new db();
+    instance = new db(node_id);
   }
   return instance;
 }
@@ -50,6 +51,7 @@ int db::closeDB() {
   return 0;
 }
 
+// deprecated
 void db::initDB() {
   TimberSaw::Options options;
   options.create_if_missing = true;

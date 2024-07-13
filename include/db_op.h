@@ -8,18 +8,18 @@
 namespace dlsmdb {
 class db {
 private:
-  db();
+  db(int node_id);
   ~db();
   static int closeDB();
   static std::mutex mtx;
   std::unique_ptr<TimberSaw::DB> db_;
   static constexpr const char *db_name = "testdb";
-  void initDB();
+  void initDB(); // deprecated
 
 public:
   db(const db &) = delete;
   db &operator=(const db &) = delete;
-  static db *getInstance();
+  static db *getInstance(int node_id);
   int setKey(const std::string &key, const std::string &value);
   int getKey(const std::string &key, std::string &value);
   int writeBatch(std::vector<TimberSaw::Slice> key_list,
