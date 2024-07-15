@@ -151,7 +151,8 @@ int test_shard(dlsmdb::db *db) {
   // for (const auto &item : val_list) {
   //   printf("%s ", item.ToString().c_str());
   // }
-  int code = db->writeBatch(key_list, val_list);
+
+  int code= db->writeBatch(key_list, val_list);
   if (code != 0) {
     printf("test_shard code not 0:%d", code);
   }
@@ -160,6 +161,8 @@ int test_shard(dlsmdb::db *db) {
   std::chrono::duration<double> duration = end - start;
   std::cerr << "writeBatch方法执行时间: " << duration.count() << " 秒"
             << std::endl;
+
+
 
   // test GetKey, and print time cost.
   start = std::chrono::system_clock::now();
@@ -173,6 +176,36 @@ int test_shard(dlsmdb::db *db) {
   duration = end - start;
   std::cerr << "getkey 方法执行时间: " << duration.count() << " 秒"
             << std::endl;
+
+
+
+
+  //睡眠
+  // std::this_thread::sleep_for(std::chrono::seconds(2));
+
+  // GetAllKey 方法测试
+  // std::ifstream inkeys("../test_keys.txt");
+  // if (!inkeys.is_open()) {
+  //   std::cerr << "Failed to open the keys." << std::endl;
+  //   return 1;
+  // }
+  // start = std::chrono::system_clock::now();
+  // std::string line;
+  // while (std::getline(inkeys, line)) {
+  //     code = db->getKey(line, get_val);
+  //        if (code != 0) {
+  //         printf("test_shard code not 0:%d", code);
+  //       }
+  //   }
+  // end = std::chrono::high_resolution_clock::now();
+  // inkeys.close();
+  // duration = end - start;
+  // std::cerr << "getLocalKeys 跨分片方法执行时间: " << duration.count() << " 秒"
+  //           << std::endl;
+  //end
+
+
+  
   assert(get_val == val_list[idx].ToString());
   infile.close();
   return 0;

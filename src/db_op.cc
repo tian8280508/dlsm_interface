@@ -14,7 +14,6 @@ db *instance = nullptr;
 std::mutex db::mtx;
 
 db::db(int node_id) {
-  printf("sssss, nodeid is is :%d", node_id);
   TimberSaw::RDMA_Manager::node_id = node_id;
   TimberSaw::Options options;
   options.create_if_missing = true;
